@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+echo "🌟 Starting FloxAI Development Mode"
+echo "==================================="
+
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ Must run inside Flox environment"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+if [ ! -d "$FLOX_ENV_PROJECT/venv" ]; then
+    echo "❌ Virtual environment not found"
+    echo "   Run: ./floxai-setup first"
+    exit 1
+fi
+
+export FLOXAI_DEV_MODE=true
+
+echo "🚀 Starting backend with hot reload..."
+cd $FLOX_ENV_PROJECT/backend
+$FLOX_ENV_PROJECT/venv/bin/python app/main.py &
+BACKEND_PID=$!
+sleep 2
+
+echo "🌐 Starting frontend with hot reload..."
+cd $FLOX_ENV_PROJECT/frontend
+npm run dev &
+FRONTEND_PID=$!
+sleep 3
+
+echo ""
+echo "✅ FloxAI Development Environment Ready!"
+echo "   🌐 Frontend: http://localhost:3000"
+echo "   🔧 Backend:  http://localhost:8000"
+echo "   📖 API Docs: http://localhost:8000/docs"
+echo ""
+echo "Press Ctrl+C to stop"
+
+cleanup() {
+    echo ""
+    echo "🛑 Stopping FloxAI..."
+    kill $BACKEND_PID $FRONTEND_PID 2>/dev/null || true
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+wait

@@ -1,0 +1,182 @@
+#!/bin/bash
+# FloxAI CLI - Layer mode entry point
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FLOXAI_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Determine if we're in layer mode or standalone mode
+if [ -n "$FLOX_ENV" ] && [ "$FLOX_ENV_NAME" != "floxai" ]; then
+    LAYER_MODE=true
+else
+    LAYER_MODE=false
+fi
+
+show_help() {
+    cat << 'EOF'
+FloxAI - The Flox Development Co-pilot
+
+USAGE:
+    floxai <command> [options]
+
+COMMANDS:
+    chat <message>     Ask FloxAI a question
+    analyze           Analyze current Flox environment  
+    suggest           Get improvement suggestions
+    setup             Initialize FloxAI
+    demo              Run Flox capabilities demo
+    flox-demo         Interactive Flox learning journey
+    serve             Start FloxAI as a service
+    layer             Start layer analysis mode
+    help              Show this help
+
+MODES:
+    Layer Mode:       When installed as layer in existing environment
+    Standalone Mode:  When running in dedicated FloxAI environment
+
+EXAMPLES:
+    floxai chat "How do I add Redis to this environment?"
+    floxai analyze
+    floxai suggest
+    floxai serve --port 8080
+
+For more information, visit: https://flox.dev/docs
+EOF
+}
+
+case "${1:-help}" in
+    "chat")
+        if [ -z "$2" ]; then
+            echo "Error: No message provided"
+            echo "Usage: floxai chat <message>"
+            exit 1
+        fi
+        shift
+        MESSAGE="$*"
+        
+        if [ "$LAYER_MODE" = true ]; then
+            echo "🤖 FloxAI (Layer Mode) - Analyzing your environment..."
+            # In layer mode, use context-aware API call
+            curl -s -X POST "http://localhost:8000/api/chat/query" \
+                -H "Content-Type: application/json" \
+                -d "{\"message\": \"$MESSAGE\", \"context_mode\": true}" | jq -r '.response' 2>/dev/null || {
+                echo "FloxAI service not running. Start with: floxai serve"
+                exit 1
+            }
+        else
+            echo "🤖 FloxAI (Standalone Mode)"
+            # In standalone mode, use general AI
+            curl -s -X POST "http://localhost:8000/api/chat/query" \
+                -H "Content-Type: application/json" \
+                -d "{\"message\": \"$MESSAGE\", \"context_mode\": false}" | jq -r '.response' 2>/dev/null || {
+                echo "FloxAI service not running. Start with: floxybot"
+                exit 1
+            }
+        fi
+        ;;
+    
+    "analyze")
+        echo "🔍 Analyzing current Flox environment..."
+        if [ -n "$FLOX_ENV" ]; then
+            echo "Environment: $FLOX_ENV_NAME"
+            echo "Project: ${FLOX_ENV_PROJECT:-$(pwd)}"
+            
+            # Check for manifest
+            if [ -f ".flox/env/manifest.toml" ]; then
+                echo "✅ Flox manifest found"
+                echo ""
+                echo "📦 Installed packages:"
+                flox list 2>/dev/null || echo "   (Unable to list packages)"
+            else
+                echo "⚠️  No Flox manifest in current directory"
+            fi
+            
+            # Check for project files
+            echo ""
+            echo "📄 Project files detected:"
+            for file in package.json requirements.txt Cargo.toml go.mod; do
+                if [ -f "$file" ]; then
+                    echo "   ✓ $file"
+                fi
+            done
+        else
+            echo "❌ Not in a Flox environment"
+            echo "   Run: flox activate"
+        fi
+        ;;
+    
+    "suggest")
+        echo "💡 FloxAI Environment Suggestions..."
+        floxai chat "Please analyze my current Flox environment and suggest improvements"
+        ;;
+    
+    "setup")
+        echo "🔧 Setting up FloxAI..."
+        if [ -f "$FLOXAI_ROOT/floxai-setup" ]; then
+            "$FLOXAI_ROOT/floxai-setup"
+        else
+            echo "Error: Setup script not found"
+            exit 1
+        fi
+        ;;
+    
+    "demo")
+        echo "🎯 Running FloxAI demo..."
+        if [ -f "$FLOXAI_ROOT/floxai-demo" ]; then
+            "$FLOXAI_ROOT/floxai-demo"
+        else
+            echo "Error: Demo script not found"
+            exit 1
+        fi
+        ;;
+    
+    "flox-demo")
+        echo "🎮 Starting Flox Interactive Learning Journey..."
+        if [ -f "$FLOXAI_ROOT/flox-demo" ]; then
+            "$FLOXAI_ROOT/flox-demo"
+        else
+            echo "Error: Flox demo script not found"
+            exit 1
+        fi
+        ;;
+    
+    "serve")
+        PORT="${2:-8000}"
+        echo "🚀 Starting FloxAI service on port $PORT..."
+        if [ "$LAYER_MODE" = true ]; then
+            export FLOXAI_CONTEXT_MODE=true
+            echo "   (Context-aware mode for environment: $FLOX_ENV_NAME)"
+        else
+            export FLOXAI_CONTEXT_MODE=false
+            echo "   (Standalone mode)"
+        fi
+        
+        if [ -f "$FLOXAI_ROOT/floxybot" ]; then
+            "$FLOXAI_ROOT/floxybot"
+        else
+            echo "Error: Service script not found"
+            exit 1
+        fi
+        ;;
+    
+    "layer")
+        echo "🔍 Starting FloxAI Layer Analysis Mode..."
+        if [ -f "$FLOXAI_ROOT/floxai-layer" ]; then
+            "$FLOXAI_ROOT/floxai-layer"
+        else
+            echo "Error: Layer script not found"
+            echo "   Expected: $FLOXAI_ROOT/floxai-layer"
+            exit 1
+        fi
+        ;;
+    
+    "help"|"--help"|"-h")
+        show_help
+        ;;
+    
+    *)
+        echo "Unknown command: $1"
+        echo "Run 'floxai help' for usage information"
+        exit 1
+        ;;
+esac

@@ -1,0 +1,70 @@
+#!/bin/bash
+set -e
+
+echo "🔧 FloxAI Initial Setup - Powered by Flox"
+echo "=========================================="
+
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ FloxAI must be run inside a Flox environment"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+echo "📊 Current Flox Environment:"
+echo "   Environment: $FLOX_ENV_NAME"
+echo "   Project Dir: $FLOX_ENV_PROJECT"
+echo "   Python: $(python3 --version 2>&1 | head -1)"
+echo "   Node.js: $(node --version)"
+echo "   Platform: $(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"
+echo ""
+
+# Create virtual environment
+echo "📦 Setting up Python virtual environment..."
+if [ ! -d "$FLOX_ENV_PROJECT/venv" ]; then
+    python3 -m venv $FLOX_ENV_PROJECT/venv
+    echo "✅ Virtual environment created"
+fi
+
+# Use venv's pip to install dependencies
+echo "📦 Installing Python dependencies..."
+cd $FLOX_ENV_PROJECT/backend
+$FLOX_ENV_PROJECT/venv/bin/pip install --upgrade pip
+$FLOX_ENV_PROJECT/venv/bin/pip install -r requirements.txt
+cd $FLOX_ENV_PROJECT
+echo "✅ Python dependencies installed"
+echo ""
+
+echo "📁 Creating FloxAI data directories..."
+mkdir -p data/vector_db data/flox_docs data/uploads
+
+echo "📖 Setting up Flox documentation..."
+mkdir -p data/flox_docs
+cat > data/flox_docs/flox-overview.md << 'DOCEOF'
+# Flox Overview
+Flox creates reproducible development environments.
+
+## Key Benefits
+- Reproducible environments
+- Cross-platform support
+- Native performance
+- Simple manifest.toml configuration
+DOCEOF
+echo "   ✅ Documentation created"
+
+echo "💾 Initializing database..."
+$FLOX_ENV_PROJECT/venv/bin/python -c "
+import sys
+sys.path.insert(0, '$FLOX_ENV_PROJECT/backend')
+from app.db.database import init_db
+init_db()
+print('   ✅ Database initialized')
+"
+
+echo ""
+echo "🎉 FloxAI Setup Complete!"
+echo ""
+echo "🚀 To start FloxAI:"
+echo "   1. Set Claude API key (optional):"
+echo "      export CLAUDE_API_KEY=your_key"
+echo "   2. Run: ./floxybotdev"
+echo ""

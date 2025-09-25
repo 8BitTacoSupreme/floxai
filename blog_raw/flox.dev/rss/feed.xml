@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Flox</title>
+        <link>https://flox.dev</link>
+        <description>Nix for simplicity and scale</description>
+        <lastBuildDate>Tue, 23 Sep 2025 22:51:42 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>rss feed</generator>
+        <image>
+            <title>Flox</title>
+            <url>https://flox.dev/images/flox-logo-padded.jpeg</url>
+            <link>https://flox.dev</link>
+        </image>
+        <copyright>All rights reserved 2025, flox</copyright>
+        <item>
+            <title><![CDATA[Get NVIDIA CUDA Stacks That Travel Across Your SDLC with Flox]]></title>
+            <link>https://flox.dev/blog/get-nvidia-cuda-stacks-that-travel-across-your-sdlc-with-flox</link>
+            <guid>https://flox.dev/blog/get-nvidia-cuda-stacks-that-travel-across-your-sdlc-with-flox</guid>
+            <pubDate>Tue, 23 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Get portable, reproducible CUDA environments and stacks with Flox. CUDA stacks you build locally travel as-is across your SDLC. Pull or clone them into runners in CI, then deploy them as containers, VMs, or lambdas to prod.]]></description>
+            <content:encoded><![CDATA[Get portable, reproducible CUDA environments and stacks with Flox. CUDA stacks you build locally travel as-is across your SDLC. Pull or clone them into runners in CI, then deploy them as containers, VMs, or lambdas to prod. <a href="https://flox.dev/blog/get-nvidia-cuda-stacks-that-travel-across-your-sdlc-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/brain-in-a-vat.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[The Flox Catalog Now Contains NVIDIA CUDA]]></title>
+            <link>https://flox.dev/blog/the-flox-catalog-now-contains-nvidia-cuda</link>
+            <guid>https://flox.dev/blog/the-flox-catalog-now-contains-nvidia-cuda</guid>
+            <pubDate>Wed, 10 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Teams can now easily build and deploy portable CUDA runtimes—including software like the CUDA Toolkit, Tensorflow, TensorRT, PyTorch, OpenCV, and other packages—that run anywhere, at any time.]]></description>
+            <content:encoded><![CDATA[Teams can now easily build and deploy portable CUDA runtimes—including software like the CUDA Toolkit, Tensorflow, TensorRT, PyTorch, OpenCV, and other packages—that run anywhere, at any time. <a href="https://flox.dev/blog/the-flox-catalog-now-contains-nvidia-cuda">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/cuda-in-flox.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[It's Time to Bring Nix to Work]]></title>
+            <link>https://flox.dev/blog/its-time-to-bring-nix-to-work</link>
+            <guid>https://flox.dev/blog/its-time-to-bring-nix-to-work</guid>
+            <pubDate>Wed, 27 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox is designed for users of all kinds. It unlocks the potential of Nix without requiring in-depth knowledge of it, and gives Nix experts a great way to enable their teams.]]></description>
+            <content:encoded><![CDATA[Flox is designed for users of all kinds. It unlocks the potential of Nix without requiring in-depth knowledge of it, and gives Nix experts a great way to enable their teams. <a href="https://flox.dev/blog/its-time-to-bring-nix-to-work">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/flox-gets-flaky.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Layering and Composing Flox Environments]]></title>
+            <link>https://flox.dev/blog/layering-and-composing-flox-environments</link>
+            <guid>https://flox.dev/blog/layering-and-composing-flox-environments</guid>
+            <pubDate>Tue, 26 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Layering and composition are two powerful ways to create and share Flox environments.]]></description>
+            <content:encoded><![CDATA[Layering and composition are two powerful ways to create and share Flox environments. <a href="https://flox.dev/blog/layering-and-composing-flox-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/nothing-will-come-of-nothing.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Introducing Flox Build and Publish]]></title>
+            <link>https://flox.dev/blog/introducing-flox-build-and-publish</link>
+            <guid>https://flox.dev/blog/introducing-flox-build-and-publish</guid>
+            <pubDate>Thu, 26 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[With Flox Build and Publish, your local dev environment is the same as your CI environment, which are the same as your build and runtime environments. You use the same environment across the entirety of the SDLC.]]></description>
+            <content:encoded><![CDATA[With Flox Build and Publish, your local dev environment is the same as your CI environment, which are the same as your build and runtime environments. You use the same environment across the entirety of the SDLC. <a href="https://flox.dev/blog/introducing-flox-build-and-publish">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/box-of-power.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox Named to Redpoint’s InfraRed 100]]></title>
+            <link>https://flox.dev/blog/flox-named-to-redpoints-infrared-100</link>
+            <guid>https://flox.dev/blog/flox-named-to-redpoints-infrared-100</guid>
+            <pubDate>Tue, 10 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[When a list as influential as the InfraRed 100 includes a company like Flox, we take it as validation of our founding belief: that reproducible runtimes and deterministic builds form the bedrock of scalable, reliable infrastructure—locally, in the cloud, wherever … and whenever.]]></description>
+            <content:encoded><![CDATA[When a list as influential as the InfraRed 100 includes a company like Flox, we take it as validation of our founding belief: that reproducible runtimes and deterministic builds form the bedrock of scalable, reliable infrastructure—locally, in the cloud, wherever … and whenever. <a href="https://flox.dev/blog/flox-named-to-redpoints-infrared-100">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/right-on-target.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Run ComfyUI Anywhere With Flox]]></title>
+            <link>https://flox.dev/blog/run-comfyui-anywhere-with-flox</link>
+            <guid>https://flox.dev/blog/run-comfyui-anywhere-with-flox</guid>
+            <pubDate>Tue, 10 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[ComfyUI is a node-based system for creating Stable Diffusion pipelines, and it offers endless possibility. Installing it with Flox is a breeze.]]></description>
+            <content:encoded><![CDATA[ComfyUI is a node-based system for creating Stable Diffusion pipelines, and it offers endless possibility. Installing it with Flox is a breeze. <a href="https://flox.dev/blog/run-comfyui-anywhere-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/world-in-monitor.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Reclaiming the SDLC]]></title>
+            <link>https://flox.dev/blog/reclaiming-the-sdlc</link>
+            <guid>https://flox.dev/blog/reclaiming-the-sdlc</guid>
+            <pubDate>Mon, 19 May 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[CI/CD is just a wrapper. To align and scale software delivery across the SDLC, teams need environments that are reproducible, auditable, and portable by default.]]></description>
+            <content:encoded><![CDATA[CI/CD is just a wrapper. To align and scale software delivery across the SDLC, teams need environments that are reproducible, auditable, and portable by default. <a href="https://flox.dev/blog/reclaiming-the-sdlc">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/umbilicus.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox Named Exclusive Media Sponsor of the Rock Bottom Curling Club's 2025 Season]]></title>
+            <link>https://flox.dev/blog/flox-named-exclusive-media-sponsor-of-the-rock-bottom-curling-clubs-2025-season</link>
+            <guid>https://flox.dev/blog/flox-named-exclusive-media-sponsor-of-the-rock-bottom-curling-clubs-2025-season</guid>
+            <pubDate>Fri, 18 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox, the company bringing reproducible dev environments to teams and enterprises everywhere, is thrilled to announce its sponsorship of the Rock Bottom Curling Club.]]></description>
+            <content:encoded><![CDATA[Flox, the company bringing reproducible dev environments to teams and enterprises everywhere, is thrilled to announce its sponsorship of the Rock Bottom Curling Club. <a href="https://flox.dev/blog/flox-named-exclusive-media-sponsor-of-the-rock-bottom-curling-clubs-2025-season">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/curling-stone.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[The Experienced Novice Dives into Nix]]></title>
+            <link>https://flox.dev/blog/the-experienced-novice-dives-into-nix</link>
+            <guid>https://flox.dev/blog/the-experienced-novice-dives-into-nix</guid>
+            <pubDate>Wed, 26 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Every new abstraction we add—containers, microservices, serverless—solves one problem but creates others. This is the story of how I discovered Nix and learned to love a deterministic approach to building software.]]></description>
+            <content:encoded><![CDATA[Every new abstraction we add—containers, microservices, serverless—solves one problem but creates others. This is the story of how I discovered Nix and learned to love a deterministic approach to building software. <a href="https://flox.dev/blog/the-experienced-novice-dives-into-nix">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/layering-tower-of-babel.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Get Your Preferred Secrets Manager in a Secure Cross-Platform CLI Toolkit]]></title>
+            <link>https://flox.dev/blog/get-your-preferred-secrets-manager-in-a-portable-cross-platform-cli-toolkit</link>
+            <guid>https://flox.dev/blog/get-your-preferred-secrets-manager-in-a-portable-cross-platform-cli-toolkit</guid>
+            <pubDate>Tue, 18 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[You can create a Flox environment with built-in, transparent auth via a third-party secrets manager, giving you CLI workflows that work the same way everywhere—locally, in CI, and in prod.]]></description>
+            <content:encoded><![CDATA[You can create a Flox environment with built-in, transparent auth via a third-party secrets manager, giving you CLI workflows that work the same way everywhere—locally, in CI, and in prod. <a href="https://flox.dev/blog/get-your-preferred-secrets-manager-in-a-portable-cross-platform-cli-toolkit">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/born-under-a-bad-sign-octocat.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Nix and Containers: Why Not Both?]]></title>
+            <link>https://flox.dev/blog/nix-and-containers-why-not-both</link>
+            <guid>https://flox.dev/blog/nix-and-containers-why-not-both</guid>
+            <pubDate>Tue, 25 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[People often say they don't use Nix because it solves the same problems as containers. This is a half truth. Nix specializes in packaging software, containers excel at deploying it. They're best used together.]]></description>
+            <content:encoded><![CDATA[People often say they don't use Nix because it solves the same problems as containers. This is a half truth. Nix specializes in packaging software, containers excel at deploying it. They're best used together. <a href="https://flox.dev/blog/nix-and-containers-why-not-both">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/container-ship.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Gonna be at Scale 22x? Beam on to Planet Nix!]]></title>
+            <link>https://flox.dev/blog/gonna-be-at-scale-22x-beam-onto-planet-nix</link>
+            <guid>https://flox.dev/blog/gonna-be-at-scale-22x-beam-onto-planet-nix</guid>
+            <pubDate>Tue, 18 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Kelsey Hightower will be one of two dozen speakers beaming onto Planet Nix, the annual gathering of Nix users and developers that’s co-located with SCALE in Pasadena, Calif., from March 5th-7th.]]></description>
+            <content:encoded><![CDATA[Kelsey Hightower will be one of two dozen speakers beaming onto Planet Nix, the annual gathering of Nix users and developers that’s co-located with SCALE in Pasadena, Calif., from March 5th-7th. <a href="https://flox.dev/blog/gonna-be-at-scale-22x-beam-onto-planet-nix">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/planet-nix.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Get DeepSeek R1 on Your Laptop with Ollama and Flox]]></title>
+            <link>https://flox.dev/blog/get-deepseek-r1-on-your-laptop-with-ollama-and-flox</link>
+            <guid>https://flox.dev/blog/get-deepseek-r1-on-your-laptop-with-ollama-and-flox</guid>
+            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Our Flox Ollama runtime environment now includes a popular React-based web front-end, so it looks and behaves like ChatGPT. You can pull and run DeepSeek R1—then prompt it from your browser.]]></description>
+            <content:encoded><![CDATA[Our Flox Ollama runtime environment now includes a popular React-based web front-end, so it looks and behaves like ChatGPT. You can pull and run DeepSeek R1—then prompt it from your browser. <a href="https://flox.dev/blog/get-deepseek-r1-on-your-laptop-with-ollama-and-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/brain-in-a-vat.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Is Flox an Alternative to Containers?]]></title>
+            <link>https://flox.dev/blog/is-flox-an-alternative-to-containers</link>
+            <guid>https://flox.dev/blog/is-flox-an-alternative-to-containers</guid>
+            <pubDate>Wed, 29 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[In the real world, Flox environments and containers neatly complement one another. The real magic lies in using Flox inside containers to fetch and manage runtime dependencies at build time.]]></description>
+            <content:encoded><![CDATA[In the real world, Flox environments and containers neatly complement one another. The real magic lies in using Flox inside containers to fetch and manage runtime dependencies at build time. <a href="https://flox.dev/blog/is-flox-an-alternative-to-containers">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/empty-container.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Floxifying a Project Repo, Part 2]]></title>
+            <link>https://flox.dev/blog/floxifying-a-project-repo-part-2</link>
+            <guid>https://flox.dev/blog/floxifying-a-project-repo-part-2</guid>
+            <pubDate>Thu, 23 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[It is usually fairly easy to Floxify an existing project, including a public GitHub repo. And it’s just as easy to add helpful automations that bootstrap an environment or improve the user experience.]]></description>
+            <content:encoded><![CDATA[It is usually fairly easy to Floxify an existing project, including a public GitHub repo. And it’s just as easy to add helpful automations that bootstrap an environment or improve the user experience. <a href="https://flox.dev/blog/floxifying-a-project-repo-part-2">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/hat-and-wrenches.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Floxifying a Project Repo Part 1]]></title>
+            <link>https://flox.dev/blog/floxifying-a-project-repo-part-1</link>
+            <guid>https://flox.dev/blog/floxifying-a-project-repo-part-1</guid>
+            <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[What does it look like to Floxify a software project? How much work is involved? How can you build locally using Flox and test in CI, or run in prod, using containers, VMs, or lambdas?]]></description>
+            <content:encoded><![CDATA[What does it look like to Floxify a software project? How much work is involved? How can you build locally using Flox and test in CI, or run in prod, using containers, VMs, or lambdas? <a href="https://flox.dev/blog/floxifying-a-project-repo-part-1">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/wizard-or-witches-hat.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Setting Up a New Laptop Made Easy with Flox]]></title>
+            <link>https://flox.dev/blog/setting-up-a-new-laptop-made-easy-with-flox</link>
+            <guid>https://flox.dev/blog/setting-up-a-new-laptop-made-easy-with-flox</guid>
+            <pubDate>Mon, 23 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[With Flox, you can easily replicate your preferred apps, tools, settings, and workflows across all your devices—including that brand new M4 MacBook Pro you’re getting for the holidays!]]></description>
+            <content:encoded><![CDATA[With Flox, you can easily replicate your preferred apps, tools, settings, and workflows across all your devices—including that brand new M4 MacBook Pro you’re getting for the holidays! <a href="https://flox.dev/blog/setting-up-a-new-laptop-made-easy-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/new-laptop.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox and AWS: Taking the Chaos Out of Secrets Management]]></title>
+            <link>https://flox.dev/blog/flox-and-aws-taking-the-chaos-out-of-secrets-management</link>
+            <guid>https://flox.dev/blog/flox-and-aws-taking-the-chaos-out-of-secrets-management</guid>
+            <pubDate>Thu, 05 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Do your teams need a reproducible, collaborative way to manage AWS secrets and authenticate with AWS services across disparate systems and environments? Fear not! Flox has got them covered.]]></description>
+            <content:encoded><![CDATA[Do your teams need a reproducible, collaborative way to manage AWS secrets and authenticate with AWS services across disparate systems and environments? Fear not! Flox has got them covered. <a href="https://flox.dev/blog/flox-and-aws-taking-the-chaos-out-of-secrets-management">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/padlocks-padlocks-padlocks-are-falling-like-rain.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox and AWS: Building, Testing, and Deploying Lambda Functions with Flox and AWS SAM]]></title>
+            <link>https://flox.dev/blog/flox-and-aws-building-testing-and-deploying-lambda-functions-with-flox-and-aws-sam</link>
+            <guid>https://flox.dev/blog/flox-and-aws-building-testing-and-deploying-lambda-functions-with-flox-and-aws-sam</guid>
+            <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[How to use Flox to install all the runtime dependencies you need to build and test your Lambda functions locally, and also containerize them for deployment to AWS Lambda.]]></description>
+            <content:encoded><![CDATA[How to use Flox to install all the runtime dependencies you need to build and test your Lambda functions locally, and also containerize them for deployment to AWS Lambda. <a href="https://flox.dev/blog/flox-and-aws-building-testing-and-deploying-lambda-functions-with-flox-and-aws-sam">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/cloud-clockwork.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox and Teams: Managing Your Code and Your Runtime Environment in Just One Place]]></title>
+            <link>https://flox.dev/blog/flox-and-teams-managing-your-code-and-your-runtime-environment-in-just-one-place</link>
+            <guid>https://flox.dev/blog/flox-and-teams-managing-your-code-and-your-runtime-environment-in-just-one-place</guid>
+            <pubDate>Fri, 22 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox lets you manage both your code and your project environment’s runtime dependencies in the same repository, so your environment’s configuration becomes part of your codebase.]]></description>
+            <content:encoded><![CDATA[Flox lets you manage both your code and your project environment’s runtime dependencies in the same repository, so your environment’s configuration becomes part of your codebase. <a href="https://flox.dev/blog/flox-and-teams-managing-your-code-and-your-runtime-environment-in-just-one-place">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/loading-truck.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox and Teams: Using Shared Flox Environments]]></title>
+            <link>https://flox.dev/blog/flox-and-teams-using-shared-flox-environments</link>
+            <guid>https://flox.dev/blog/flox-and-teams-using-shared-flox-environments</guid>
+            <pubDate>Fri, 15 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Teams are held back by the unpredictability of things they should be able to control. With shared Flox environments, working on a team becomes a completely different experience.]]></description>
+            <content:encoded><![CDATA[Teams are held back by the unpredictability of things they should be able to control. With shared Flox environments, working on a team becomes a completely different experience. <a href="https://flox.dev/blog/flox-and-teams-using-shared-flox-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/running-up-that-hill.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox and Teams: Onboarding Made Easy with GitHub and Flox]]></title>
+            <link>https://flox.dev/blog/flox-and-teams-onboarding-made-easy-with-github-and-flox</link>
+            <guid>https://flox.dev/blog/flox-and-teams-onboarding-made-easy-with-github-and-flox</guid>
+            <pubDate>Thu, 07 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Onboarding onto something new is radically different when you use Flox to create and manage your dev environments.]]></description>
+            <content:encoded><![CDATA[Onboarding onto something new is radically different when you use Flox to create and manage your dev environments. <a href="https://flox.dev/blog/flox-and-teams-onboarding-made-easy-with-github-and-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/coffee-on-desk.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Using Flox to Create Portable, Reproducible Go Environments]]></title>
+            <link>https://flox.dev/blog/using-flox-to-create-portable-reproducible-go-environments</link>
+            <guid>https://flox.dev/blog/using-flox-to-create-portable-reproducible-go-environments</guid>
+            <pubDate>Thu, 10 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox’s superpower is reproducibility, so the Go dev environments you create on your Linux laptop will just work ... everywhere]]></description>
+            <content:encoded><![CDATA[Flox’s superpower is reproducibility, so the Go dev environments you create on your Linux laptop will just work ... everywhere <a href="https://flox.dev/blog/using-flox-to-create-portable-reproducible-go-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/gopher-on-desk.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Using Flox to Create Portable, Reproducible Node.js Environments]]></title>
+            <link>https://flox.dev/blog/using-flox-to-create-portable-reproducible-nodejs-environments</link>
+            <guid>https://flox.dev/blog/using-flox-to-create-portable-reproducible-nodejs-environments</guid>
+            <pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox makes it trivially easy to create and share portable, reproducible Node.js development environments using simple declarative methods.]]></description>
+            <content:encoded><![CDATA[Flox makes it trivially easy to create and share portable, reproducible Node.js development environments using simple declarative methods. <a href="https://flox.dev/blog/using-flox-to-create-portable-reproducible-nodejs-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/atomic-molecule.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Integrating Flox with CI for Consistent, Reproducible Dev Environments]]></title>
+            <link>https://flox.dev/blog/integrating-flox-with-ci-for-consistent-reproducible-dev-environments</link>
+            <guid>https://flox.dev/blog/integrating-flox-with-ci-for-consistent-reproducible-dev-environments</guid>
+            <pubDate>Thu, 26 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[By testing your environments as part of your CI workflows, you can guarantee they work the same way—everywhere.]]></description>
+            <content:encoded><![CDATA[By testing your environments as part of your CI workflows, you can guarantee they work the same way—everywhere. <a href="https://flox.dev/blog/integrating-flox-with-ci-for-consistent-reproducible-dev-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/riding-the-blinds.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Write Once, Take Anywhere $HOME Away from Home with FloxHub]]></title>
+            <link>https://flox.dev/blog/write-once-take-anywhere-home-away-from-home-with-floxhub</link>
+            <guid>https://flox.dev/blog/write-once-take-anywhere-home-away-from-home-with-floxhub</guid>
+            <pubDate>Wed, 18 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[With FloxHub, it’s easy to share and manage Flox environments, making them available to your teammates. Even better, FloxHub provides a one-stop shop for changing your environments.]]></description>
+            <content:encoded><![CDATA[With FloxHub, it’s easy to share and manage Flox environments, making them available to your teammates. Even better, FloxHub provides a one-stop shop for changing your environments. <a href="https://flox.dev/blog/write-once-take-anywhere-home-away-from-home-with-floxhub">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/dishes-on-the-plains.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Using Flox to Create Portable, Reproducible Python Environments]]></title>
+            <link>https://flox.dev/blog/using-flox-to-create-portable-reproducible-python-environments</link>
+            <guid>https://flox.dev/blog/using-flox-to-create-portable-reproducible-python-environments</guid>
+            <pubDate>Tue, 10 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox makes it trivially easy to create and share portable, reproducible Python development environments using simple declarative methods.]]></description>
+            <content:encoded><![CDATA[Flox makes it trivially easy to create and share portable, reproducible Python development environments using simple declarative methods. <a href="https://flox.dev/blog/using-flox-to-create-portable-reproducible-python-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/jars-with-snakes.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[A Real World Rust Project with Flox]]></title>
+            <link>https://flox.dev/blog/a-real-world-rust-project-with-flox</link>
+            <guid>https://flox.dev/blog/a-real-world-rust-project-with-flox</guid>
+            <pubDate>Mon, 09 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[See how Flox makes it easy it is to set up a real-world Rust project, complete with external tools and dependencies, using a simple manifest that works everywhere you do.]]></description>
+            <content:encoded><![CDATA[See how Flox makes it easy it is to set up a real-world Rust project, complete with external tools and dependencies, using a simple manifest that works everywhere you do. <a href="https://flox.dev/blog/a-real-world-rust-project-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/crabs-on-a-bench.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Hassle-Free Cross-Platform Dev with Flox]]></title>
+            <link>https://flox.dev/blog/hassle-free-cross-platform-dev-with-flox</link>
+            <guid>https://flox.dev/blog/hassle-free-cross-platform-dev-with-flox</guid>
+            <pubDate>Thu, 05 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox makes it simple to create portable, cross-platform dev environments, but sometimes you also need to work around system- and architecture-specific package constraints. This article shows you how.]]></description>
+            <content:encoded><![CDATA[Flox makes it simple to create portable, cross-platform dev environments, but sometimes you also need to work around system- and architecture-specific package constraints. This article shows you how. <a href="https://flox.dev/blog/hassle-free-cross-platform-dev-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/desert-meets-arctic.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox 1.3: Simplified Service Management with Flox]]></title>
+            <link>https://flox.dev/blog/flox-1.3-simplified-service-management-with-flox</link>
+            <guid>https://flox.dev/blog/flox-1.3-simplified-service-management-with-flox</guid>
+            <pubDate>Thu, 22 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[It’s even easier to build beefy services like PostgreSQL into your dev environments now that Flox does the setup, teardown, and runtime management lifting for you.]]></description>
+            <content:encoded><![CDATA[It’s even easier to build beefy services like PostgreSQL into your dev environments now that Flox does the setup, teardown, and runtime management lifting for you. <a href="https://flox.dev/blog/flox-1.3-simplified-service-management-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/wall-switches.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Conflict Resolution Made Easy with Package Groups in Flox]]></title>
+            <link>https://flox.dev/blog/conflict-resolution-made-easy-with-package-groups-in-flox</link>
+            <guid>https://flox.dev/blog/conflict-resolution-made-easy-with-package-groups-in-flox</guid>
+            <pubDate>Mon, 19 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox Package Groups give you an easy way to manage dependency conflicts, enabling you to create powerful fit-for-purpose dev environments you can take with you—anywhere.]]></description>
+            <content:encoded><![CDATA[Flox Package Groups give you an easy way to manage dependency conflicts, enabling you to create powerful fit-for-purpose dev environments you can take with you—anywhere. <a href="https://flox.dev/blog/conflict-resolution-made-easy-with-package-groups-in-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/containers-on-a-counter.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Mastering Hooks and Profiles for Reproducible Flox Environments]]></title>
+            <link>https://flox.dev/blog/mastering-hooks-and-profiles-for-reproducible-flox-environments</link>
+            <guid>https://flox.dev/blog/mastering-hooks-and-profiles-for-reproducible-flox-environments</guid>
+            <pubDate>Thu, 08 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn how you can use Flox's [hook] and [profile] sections to build, customize, and share rich, reproducible development environments.]]></description>
+            <content:encoded><![CDATA[Learn how you can use Flox's [hook] and [profile] sections to build, customize, and share rich, reproducible development environments. <a href="https://flox.dev/blog/mastering-hooks-and-profiles-for-reproducible-flox-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/desk-with-magnifying-glass.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Making Ruby Projects Easier to Share]]></title>
+            <link>https://flox.dev/blog/making-ruby-projects-easier-to-share</link>
+            <guid>https://flox.dev/blog/making-ruby-projects-easier-to-share</guid>
+            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Using Flox simplifies Ruby development by making it much easier to manage system-level dependencies, providing a consistent and reproducible Ruby dev environment across all platforms and architectures.]]></description>
+            <content:encoded><![CDATA[Using Flox simplifies Ruby development by making it much easier to manage system-level dependencies, providing a consistent and reproducible Ruby dev environment across all platforms and architectures. <a href="https://flox.dev/blog/making-ruby-projects-easier-to-share">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/ruby-in-a-treasure-chest.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Extending Flox with Nix Flakes]]></title>
+            <link>https://flox.dev/blog/extending-flox-with-nix-flakes</link>
+            <guid>https://flox.dev/blog/extending-flox-with-nix-flakes</guid>
+            <pubDate>Wed, 24 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Using Flakes in Flox give you more flexibility, allowing you to access or create unique package versions and custom configurations not available in Flox Catalog.]]></description>
+            <content:encoded><![CDATA[Using Flakes in Flox give you more flexibility, allowing you to access or create unique package versions and custom configurations not available in Flox Catalog. <a href="https://flox.dev/blog/extending-flox-with-nix-flakes">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/flox-gets-flaky.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Extreme $HOME Makeover with Flox]]></title>
+            <link>https://flox.dev/blog/extreme-home-makeover-with-flox</link>
+            <guid>https://flox.dev/blog/extreme-home-makeover-with-flox</guid>
+            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[With the Flox default environment, you can take your $HOME with you wherever you go...and keep your tooling consistent across systems and distros.]]></description>
+            <content:encoded><![CDATA[With the Flox default environment, you can take your $HOME with you wherever you go...and keep your tooling consistent across systems and distros. <a href="https://flox.dev/blog/extreme-home-makeover-with-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/cottage-with-wings.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[ML Modeling with FLAIM and Hugging Face Diffusers]]></title>
+            <link>https://flox.dev/blog/ml-modeling-with-flaim-and-hugging-face-diffusers</link>
+            <guid>https://flox.dev/blog/ml-modeling-with-flaim-and-hugging-face-diffusers</guid>
+            <pubDate>Wed, 10 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Using Flox, it is easy to create reproducible environments for ML training and inference using Hugging Face Diffusers. Our FLAIM environment gets you there in a single command.]]></description>
+            <content:encoded><![CDATA[Using Flox, it is easy to create reproducible environments for ML training and inference using Hugging Face Diffusers. Our FLAIM environment gets you there in a single command. <a href="https://flox.dev/blog/ml-modeling-with-flaim-and-hugging-face-diffusers">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/canvas-on-easel.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[A Very Short Introduction to Layering in Flox]]></title>
+            <link>https://flox.dev/blog/a-very-short-introduction-to-layering-in-flox</link>
+            <guid>https://flox.dev/blog/a-very-short-introduction-to-layering-in-flox</guid>
+            <pubDate>Tue, 02 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox environments aren't isolated; they layer upon one another, allowing you to combine them in endless ways while keeping your toolsets discrete.]]></description>
+            <content:encoded><![CDATA[Flox environments aren't isolated; they layer upon one another, allowing you to combine them in endless ways while keeping your toolsets discrete. <a href="https://flox.dev/blog/a-very-short-introduction-to-layering-in-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/worlds-in-worlds.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Flox 1.1: Time Travel Across 100k+ Nix Packages]]></title>
+            <link>https://flox.dev/blog/flox-1.1-time-travel-across-100k-nix-packages</link>
+            <guid>https://flox.dev/blog/flox-1.1-time-travel-across-100k-nix-packages</guid>
+            <pubDate>Tue, 25 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[The Flox Catalog now contains over 3 years of history for each of its 100k packages, totaling over a million building blocks you can assemble however you like. Find everything you're looking for.]]></description>
+            <content:encoded><![CDATA[The Flox Catalog now contains over 3 years of history for each of its 100k packages, totaling over a million building blocks you can assemble however you like. Find everything you're looking for. <a href="https://flox.dev/blog/flox-1.1-time-travel-across-100k-nix-packages">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/books-on-shelves.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Intro to the Flox CLI, Part One: Easy Environments]]></title>
+            <link>https://flox.dev/blog/intro-to-the-flox-cli-part-one-easy-environments</link>
+            <guid>https://flox.dev/blog/intro-to-the-flox-cli-part-one-easy-environments</guid>
+            <pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox makes it easy to create ephemeral environments and try new tools without making a mess all over your desk.]]></description>
+            <content:encoded><![CDATA[Flox makes it easy to create ephemeral environments and try new tools without making a mess all over your desk. <a href="https://flox.dev/blog/intro-to-the-flox-cli-part-one-easy-environments">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/magic-toy-box.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Intro to the Flox CLI, Part Three: Cloning, Pushing, and Pulling]]></title>
+            <link>https://flox.dev/blog/intro-to-the-flox-cli-part-three-cloning-pushing-and-pulling</link>
+            <guid>https://flox.dev/blog/intro-to-the-flox-cli-part-three-cloning-pushing-and-pulling</guid>
+            <pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[The third part of this series shows how you can clone environments, layer them, and share them.]]></description>
+            <content:encoded><![CDATA[The third part of this series shows how you can clone environments, layer them, and share them. <a href="https://flox.dev/blog/intro-to-the-flox-cli-part-three-cloning-pushing-and-pulling">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/assembly-line.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Intro to the Flox CLI, Part Two: Aliases, Vars, and Hooks]]></title>
+            <link>https://flox.dev/blog/intro-to-the-flox-cli-part-two-aliases-vars-and-hooks</link>
+            <guid>https://flox.dev/blog/intro-to-the-flox-cli-part-two-aliases-vars-and-hooks</guid>
+            <pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[The second part of this series explores the ways you can use Flox environments to adjust the way software is configured and run.]]></description>
+            <content:encoded><![CDATA[The second part of this series explores the ways you can use Flox environments to adjust the way software is configured and run. <a href="https://flox.dev/blog/intro-to-the-flox-cli-part-two-aliases-vars-and-hooks">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/manage-the-universe.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Why we built Flox]]></title>
+            <link>https://flox.dev/blog/why-we-built-flox</link>
+            <guid>https://flox.dev/blog/why-we-built-flox</guid>
+            <pubDate>Wed, 13 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Flox CLI 1.0 and FloxHub is here! It's a good opportunity to reflect on our own experiences and the reasons we feel Flox is a part of the next generation of software development practices.]]></description>
+            <content:encoded><![CDATA[Flox CLI 1.0 and FloxHub is here! It's a good opportunity to reflect on our own experiences and the reasons we feel Flox is a part of the next generation of software development practices. <a href="https://flox.dev/blog/why-we-built-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/grove-of-technology.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[NixCon 2023: Recap & Videos]]></title>
+            <link>https://flox.dev/blog/nixcon-2023-recap-videos</link>
+            <guid>https://flox.dev/blog/nixcon-2023-recap-videos</guid>
+            <pubDate>Thu, 12 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Nixcon 2023 in Darmstadt is a wrap! The team from flox was there, giving talks and having amazing conversations. In this post, find videos from our NixCon 2023 talks.]]></description>
+            <content:encoded><![CDATA[Nixcon 2023 in Darmstadt is a wrap! The team from flox was there, giving talks and having amazing conversations. In this post, find videos from our NixCon 2023 talks. <a href="https://flox.dev/blog/nixcon-2023-recap-videos">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/nixcon-2023.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Rust & Nix: Parallels in Complexity Management]]></title>
+            <link>https://flox.dev/blog/rust-nix-parallels-in-complexity-management</link>
+            <guid>https://flox.dev/blog/rust-nix-parallels-in-complexity-management</guid>
+            <pubDate>Tue, 16 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[If Rust seeks to solve the problem of memory management at the program level, Nix seeks to solve dependency management at the build level, for any language. The solutions go hand in hand.]]></description>
+            <content:encoded><![CDATA[If Rust seeks to solve the problem of memory management at the program level, Nix seeks to solve dependency management at the build level, for any language. The solutions go hand in hand. <a href="https://flox.dev/blog/rust-nix-parallels-in-complexity-management">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/rust-nix.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Contributing to Nixpkgs]]></title>
+            <link>https://flox.dev/blog/contributing-to-nixpkgs</link>
+            <guid>https://flox.dev/blog/contributing-to-nixpkgs</guid>
+            <pubDate>Mon, 08 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[We're big fans of Nixpkgs (obviously) and encourage others to contribute packaging and review. Nixpkgs is surprisingly easy to contribute to, but has its particular details. This is a guide to contributing your first PR to Nixpkgs.]]></description>
+            <content:encoded><![CDATA[We're big fans of Nixpkgs (obviously) and encourage others to contribute packaging and review. Nixpkgs is surprisingly easy to contribute to, but has its particular details. This is a guide to contributing your first PR to Nixpkgs. <a href="https://flox.dev/blog/contributing-to-nixpkgs">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/nixpkgs-contribution.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Nixpkgs: The Big Recipe Book of Open Source]]></title>
+            <link>https://flox.dev/blog/nixpkgs-the-big-recipe-book-of-open-source</link>
+            <guid>https://flox.dev/blog/nixpkgs-the-big-recipe-book-of-open-source</guid>
+            <pubDate>Thu, 02 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Anybody can view it, fork it, patch it, and use Nix to inspect the largest set of free software recipes in the world. The Nixpkgs package collection is core to the success of Nix.]]></description>
+            <content:encoded><![CDATA[Anybody can view it, fork it, patch it, and use Nix to inspect the largest set of free software recipes in the world. The Nixpkgs package collection is core to the success of Nix. <a href="https://flox.dev/blog/nixpkgs-the-big-recipe-book-of-open-source">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/nixpkgs-purple-galaxy.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Announcing the Flox Open Beta]]></title>
+            <link>https://flox.dev/blog/announcing-the-flox-open-beta</link>
+            <guid>https://flox.dev/blog/announcing-the-flox-open-beta</guid>
+            <pubDate>Tue, 07 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Harness the power of Nix. Today we’re thrilled to release the flox CLI beta to the public as an open source project and announce a Series A funding round led by NEA.]]></description>
+            <content:encoded><![CDATA[Harness the power of Nix. Today we’re thrilled to release the flox CLI beta to the public as an open source project and announce a Series A funding round led by NEA. <a href="https://flox.dev/blog/announcing-the-flox-open-beta">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/flox-logo-padded.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Hash Collision]]></title>
+            <link>https://flox.dev/blog/hash-collision</link>
+            <guid>https://flox.dev/blog/hash-collision</guid>
+            <pubDate>Tue, 31 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Github changed the format of their archives and this caused some systems and services that depend on the hash of the archives of a source tree to break.]]></description>
+            <content:encoded><![CDATA[Github changed the format of their archives and this caused some systems and services that depend on the hash of the archives of a source tree to break. <a href="https://flox.dev/blog/hash-collision">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/narwhal.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Happy New Year!]]></title>
+            <link>https://flox.dev/blog/happy-new-year</link>
+            <guid>https://flox.dev/blog/happy-new-year</guid>
+            <pubDate>Sun, 01 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Tired: year of the Linux desktop. Wired: year of Nix everywhere. ]]></description>
+            <content:encoded><![CDATA[Tired: year of the Linux desktop. Wired: year of Nix everywhere.  <a href="https://flox.dev/blog/happy-new-year">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/fireworks.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Building the Ladder: Flox at NixCon]]></title>
+            <link>https://flox.dev/blog/building-the-ladder-flox-at-nixcon</link>
+            <guid>https://flox.dev/blog/building-the-ladder-flox-at-nixcon</guid>
+            <pubDate>Fri, 04 Nov 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[At NixCon 2022, Flox Lead Engineer Tom Bereknyei talked about the mission behind Flox, focusing on the problems we can solve ... and how we intend to go about solving them.]]></description>
+            <content:encoded><![CDATA[At NixCon 2022, Flox Lead Engineer Tom Bereknyei talked about the mission behind Flox, focusing on the problems we can solve ... and how we intend to go about solving them. <a href="https://flox.dev/blog/building-the-ladder-flox-at-nixcon">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/flox-sticker.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Thank you NixCon!]]></title>
+            <link>https://flox.dev/blog/thank-you-nixcon</link>
+            <guid>https://flox.dev/blog/thank-you-nixcon</guid>
+            <pubDate>Fri, 28 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Last week, the Nix community got together in person for the first time in 3 years, in Paris, for three days of presentations, discussion, and good times.]]></description>
+            <content:encoded><![CDATA[Last week, the Nix community got together in person for the first time in 3 years, in Paris, for three days of presentations, discussion, and good times. <a href="https://flox.dev/blog/thank-you-nixcon">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/nixcon2022.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Announcing Flox]]></title>
+            <link>https://flox.dev/blog/announcing-flox</link>
+            <guid>https://flox.dev/blog/announcing-flox</guid>
+            <pubDate>Thu, 13 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[flox is a first-of-its-kind environment manager. Seamlessly create new polyglot developer environments. Make everything reproducible from package management to builds.]]></description>
+            <content:encoded><![CDATA[flox is a first-of-its-kind environment manager. Seamlessly create new polyglot developer environments. Make everything reproducible from package management to builds. <a href="https://flox.dev/blog/announcing-flox">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/flox-logo-padded.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Nix: Pure Genius]]></title>
+            <link>https://flox.dev/blog/nix-pure-genius</link>
+            <guid>https://flox.dev/blog/nix-pure-genius</guid>
+            <pubDate>Sun, 12 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I absolutely love it when hard problems are solved by challenging convention, peeling back layer after layer until pinpointing the core assumption that led us down the wrong path in the first place.]]></description>
+            <content:encoded><![CDATA[I absolutely love it when hard problems are solved by challenging convention, peeling back layer after layer until pinpointing the core assumption that led us down the wrong path in the first place. <a href="https://flox.dev/blog/nix-pure-genius">Read more</a>]]></content:encoded>
+            <enclosure url="https://flox.dev/images/blog/mobile_bay_wide.webp" length="0" type="image/webp"/>
+        </item>
+    </channel>
+</rss>

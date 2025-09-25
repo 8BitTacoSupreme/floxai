@@ -1,0 +1,85 @@
+#!/bin/bash
+set -e
+
+echo "🌟 Starting FloxAI - The Flox Development Co-pilot (Standalone Mode)"
+echo "=================================================================="
+
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ FloxAI must be run inside a Flox environment"
+    echo "   This showcases Flox's environment isolation!"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+# Check if setup has been run
+if [ ! -f "$FLOX_ENV_PROJECT/data/floxai.db" ]; then
+    echo "❌ FloxAI not initialized"
+    echo "   Run: floxai-setup first"
+    exit 1
+fi
+
+# Check for Claude API key (warn but don't exit)
+if [ -z "$CLAUDE_API_KEY" ]; then
+    echo "⚠️  CLAUDE_API_KEY not set - running with limited functionality"
+    echo "   For full AI features, set your Claude API key:"
+    echo "   export CLAUDE_API_KEY=your_key_here"
+    echo ""
+    echo "💡 Flox Tip: Add it to manifest.toml [vars] section for persistence"
+    echo ""
+fi
+
+export FLOXAI_DEV_MODE=false
+export FLOXAI_CONTEXT_MODE=false  # Standalone mode
+
+echo "🚀 Starting FloxAI with Flox Services (Standalone Mode)..."
+echo "   This showcases Flox's service orchestration capabilities!"
+
+# Start backend service
+echo "   🔧 Starting backend service..."
+cd $FLOX_ENV_PROJECT/backend
+export CLAUDE_API_KEY="$CLAUDE_API_KEY"
+uvicorn app.main:app --host 0.0.0.0 --port 8000 &
+BACKEND_PID=$!
+sleep 8
+
+# Verify backend started
+if ! curl -s http://localhost:8000/health > /dev/null 2>&1; then
+    echo "❌ Backend service failed to start. Check the logs above."
+    echo "💡 Try running: cd backend && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    exit 1
+fi
+
+echo "🌐 Starting frontend service..."
+cd $FLOX_ENV_PROJECT/frontend
+npm run preview &
+FRONTEND_PID=$!
+sleep 5
+
+echo ""
+echo "✅ FloxAI Standalone Mode is now running!"
+echo "   🌍 Frontend: http://localhost:4173"
+echo "   🔧 Backend:  http://localhost:8000"
+echo "   📖 API Docs: http://localhost:8000/docs"
+echo ""
+echo "🎯 Standalone Mode Features:"
+echo "   ✓ General Flox and Nix knowledge base"
+echo "   ✓ Cross-platform environment guidance"
+echo "   ✓ Best practices and troubleshooting"
+echo "   ✓ Manifest.toml configuration help"
+echo ""
+echo "💡 For context-aware development assistance, use: floxybotdev"
+echo ""
+echo "Press Ctrl+C to stop FloxAI"
+
+cleanup() {
+    echo ""
+    echo "🛑 Stopping FloxAI services..."
+    kill $BACKEND_PID 2>/dev/null || true
+    kill $FRONTEND_PID 2>/dev/null || true
+    sleep 1
+    echo "👋 FloxAI stopped - Flox environment remains active"
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+wait

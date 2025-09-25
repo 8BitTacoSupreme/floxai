@@ -1,0 +1,87 @@
+#!/bin/bash
+set -e
+
+echo "🌟 Starting FloxAI - The Complete Flox Development Co-pilot"
+echo "============================================================"
+echo "🎯 This showcases Flox's power for reproducible development environments!"
+echo ""
+
+# Check if we're in a Flox environment
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ FloxAI must be run inside a Flox environment"
+    echo "   This demonstrates Flox's environment isolation!"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+# Check if setup has been run
+if [ ! -f "$FLOX_ENV_PROJECT/data/floxai.db" ]; then
+    echo "❌ FloxAI not initialized"
+    echo "   Run: floxai-setup first"
+    exit 1
+fi
+
+echo "🔧 Flox Environment: $FLOX_ENV_NAME"
+echo "📁 Project Directory: $FLOX_ENV_PROJECT"
+echo "🤖 Claude API: ${CLAUDE_API_KEY:0:20}..."
+echo ""
+
+# Start backend service
+echo "🚀 Starting FloxAI Backend Service..."
+cd $FLOX_ENV_PROJECT/backend
+export CLAUDE_API_KEY="$CLAUDE_API_KEY"
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload &
+BACKEND_PID=$!
+
+# Wait for backend to start
+echo "   ⏳ Waiting for backend to initialize..."
+sleep 8
+
+# Check if backend is healthy
+if curl -s http://localhost:8000/health > /dev/null 2>&1; then
+    echo "   ✅ Backend service started successfully"
+else
+    echo "   ❌ Backend failed to start"
+    echo "   💡 Check the logs above for errors"
+    exit 1
+fi
+
+# Start frontend service
+echo "🌐 Starting FloxAI Frontend Service..."
+cd $FLOX_ENV_PROJECT/frontend
+npm run dev &
+FRONTEND_PID=$!
+
+# Wait for frontend to start
+echo "   ⏳ Waiting for frontend to initialize..."
+sleep 5
+
+echo ""
+echo "🎉 FloxAI is now running with Flox Services!"
+echo "============================================="
+echo "   🌍 Frontend: http://localhost:3000"
+echo "   🔧 Backend:  http://localhost:8000"
+echo "   📖 API Docs: http://localhost:8000/docs"
+echo "   ❤️  Health:   http://localhost:8000/health"
+echo ""
+echo "🎯 Flox Services Active:"
+echo "   ✓ floxai-backend  - FastAPI with RAG & LLM"
+echo "   ✓ floxai-frontend - React development server"
+echo ""
+echo "💡 This demonstrates Flox's service orchestration capabilities!"
+echo "   All services run within the Flox environment with proper isolation."
+echo ""
+echo "Press Ctrl+C to stop all services"
+
+# Cleanup function
+cleanup() {
+    echo ""
+    echo "🛑 Stopping FloxAI services..."
+    kill $BACKEND_PID $FRONTEND_PID 2>/dev/null || true
+    sleep 2
+    echo "👋 FloxAI stopped - Flox environment remains active"
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+wait

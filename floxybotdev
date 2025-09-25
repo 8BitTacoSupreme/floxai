@@ -1,0 +1,108 @@
+#!/bin/bash
+set -e
+
+echo "🌟 Starting FloxAI - Context-Aware Development Mode"
+echo "==================================================="
+
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ Must run inside Flox environment"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+# Check if setup has been run
+if [ ! -f "$FLOX_ENV_PROJECT/data/floxai.db" ]; then
+    echo "❌ FloxAI not initialized"
+    echo "   Run: floxai-setup first"
+    exit 1
+fi
+
+# Analyze current environment for context awareness
+echo "🔍 Analyzing current Flox environment for context..."
+echo "   Environment: $FLOX_ENV_NAME"
+echo "   Project: $FLOX_ENV_PROJECT"
+
+# Check for manifest.toml in current environment
+if [ -f "$FLOX_ENV_PROJECT/.flox/env/manifest.toml" ]; then
+    echo "   ✓ Found environment manifest"
+else
+    echo "   ⚠️  No manifest found in current location"
+fi
+
+# Check for common project files
+PROJECT_TYPE=""
+if [ -f "$FLOX_ENV_PROJECT/package.json" ]; then
+    PROJECT_TYPE="$PROJECT_TYPE Node.js"
+fi
+if [ -f "$FLOX_ENV_PROJECT/requirements.txt" ] || [ -f "$FLOX_ENV_PROJECT/pyproject.toml" ]; then
+    PROJECT_TYPE="$PROJECT_TYPE Python"
+fi
+if [ -f "$FLOX_ENV_PROJECT/Cargo.toml" ]; then
+    PROJECT_TYPE="$PROJECT_TYPE Rust"
+fi
+if [ -f "$FLOX_ENV_PROJECT/go.mod" ]; then
+    PROJECT_TYPE="$PROJECT_TYPE Go"
+fi
+
+if [ -n "$PROJECT_TYPE" ]; then
+    echo "   📦 Detected project types:$PROJECT_TYPE"
+fi
+
+export FLOXAI_DEV_MODE=true
+export FLOXAI_CONTEXT_MODE=true  # Context-aware mode
+export FLOXAI_CURRENT_ENV="$FLOX_ENV_NAME"
+export FLOXAI_PROJECT_TYPE="$PROJECT_TYPE"
+
+echo ""
+echo "🚀 Starting FloxAI with Flox Services (Context-Aware Mode)..."
+echo "   This showcases Flox's service orchestration capabilities!"
+
+# Set context-aware environment variables
+export FLOXAI_DEV_MODE=true
+export FLOXAI_CONTEXT_MODE=true
+export FLOXAI_CURRENT_ENV="$FLOX_ENV_NAME"
+export FLOXAI_PROJECT_TYPE="$PROJECT_TYPE"
+
+# Start backend service
+echo "   🔧 Starting backend service with hot reload..."
+flox run floxai-backend &
+BACKEND_PID=$!
+sleep 8
+
+# Verify backend started
+if ! curl -s http://localhost:8000/health > /dev/null 2>&1; then
+    echo "❌ Backend service failed to start. Check the logs above."
+    echo "💡 Try running: flox run floxai-backend"
+    exit 1
+fi
+
+echo "🌐 Starting frontend service with hot reload..."
+flox run floxai-frontend &
+FRONTEND_PID=$!
+sleep 5
+
+echo ""
+echo "✅ FloxAI Context-Aware Development Mode Ready!"
+echo "   🌐 Frontend: http://localhost:3000"
+echo "   🔧 Backend:  http://localhost:8000"
+echo "   📖 API Docs: http://localhost:8000/docs"
+echo ""
+echo "🎯 Context-Aware Features Active:"
+echo "   ✓ Environment-specific assistance"
+echo "   ✓ Project-aware suggestions"
+echo "   ✓ Manifest analysis and validation"
+echo "   ✓ Development workflow optimization"
+echo ""
+echo "💡 This mode provides tailored help for your current environment"
+echo ""
+echo "Press Ctrl+C to stop"
+
+cleanup() {
+    echo ""
+    echo "🛑 Stopping FloxAI..."
+    kill $BACKEND_PID $FRONTEND_PID 2>/dev/null || true
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+wait

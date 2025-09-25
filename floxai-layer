@@ -1,0 +1,108 @@
+#!/bin/bash
+set -e
+
+echo "🔍 FloxAI Layer Mode - Environment Analysis"
+echo "==========================================="
+
+# Check if we're in a Flox environment
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ FloxAI Layer must be used within a Flox environment"
+    echo "   This demonstrates Flox's layer composition capabilities!"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+echo "🎯 Analyzing current Flox environment..."
+echo "   Environment: $FLOX_ENV_NAME"
+echo "   Project: $FLOX_ENV_PROJECT"
+echo ""
+
+# Detect project type and files
+PROJECT_TYPE="unknown"
+if [ -f "package.json" ]; then
+    PROJECT_TYPE="nodejs"
+elif [ -f "Cargo.toml" ]; then
+    PROJECT_TYPE="rust"
+elif [ -f "pyproject.toml" ] || [ -f "requirements.txt" ]; then
+    PROJECT_TYPE="python"
+elif [ -f "go.mod" ]; then
+    PROJECT_TYPE="go"
+fi
+
+echo "📊 Environment Analysis:"
+echo "   Project Type: $PROJECT_TYPE"
+echo "   Manifest: $([ -f "manifest.toml" ] && echo "✅ Found" || echo "❌ Not found")"
+echo "   FloxAI Layer: ✅ Active"
+echo ""
+
+# Set environment variables for context-aware mode
+export FLOXAI_CONTEXT_MODE=true
+export FLOXAI_CURRENT_ENV="$FLOX_ENV_NAME"
+export FLOXAI_PROJECT_TYPE="$PROJECT_TYPE"
+export FLOXAI_LAYER_MODE=true
+
+echo "🚀 Starting FloxAI with environment context..."
+echo "   Mode: Layer Analysis"
+echo "   Context: $PROJECT_TYPE project in $FLOX_ENV_NAME"
+echo ""
+
+# Start backend with context
+cd $FLOX_ENV_PROJECT/backend
+export CLAUDE_API_KEY="$CLAUDE_API_KEY"
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload &
+BACKEND_PID=$!
+
+# Wait for backend to start
+echo "   ⏳ Waiting for backend to initialize..."
+sleep 8
+
+# Check if backend is healthy
+if curl -s http://localhost:8000/health > /dev/null 2>&1; then
+    echo "   ✅ Backend service started successfully"
+else
+    echo "   ❌ Backend failed to start"
+    echo "   💡 Check the logs above for errors"
+    exit 1
+fi
+
+# Start frontend service
+echo "🌐 Starting FloxAI Frontend Service..."
+cd $FLOX_ENV_PROJECT/frontend
+npm run dev &
+FRONTEND_PID=$!
+
+# Wait for frontend to start
+echo "   ⏳ Waiting for frontend to initialize..."
+sleep 5
+
+echo ""
+echo "🎉 FloxAI Layer Mode Ready!"
+echo "=========================="
+echo "   🌍 Frontend: http://localhost:3000"
+echo "   🔧 Backend:  http://localhost:8000"
+echo "   📖 API Docs: http://localhost:8000/docs"
+echo ""
+echo "🎯 Layer Features:"
+echo "   ✓ Environment Analysis: $PROJECT_TYPE project"
+echo "   ✓ Context-Aware Suggestions"
+echo "   ✓ Manifest Optimization"
+echo "   ✓ Flox Best Practices"
+echo ""
+echo "💡 This demonstrates Flox's layer composition!"
+echo "   FloxAI is now analyzing your environment and can provide"
+echo "   specific suggestions for your $PROJECT_TYPE project."
+echo ""
+echo "Press Ctrl+C to stop"
+
+cleanup() {
+    echo ""
+    echo "🛑 Stopping FloxAI Layer services..."
+    kill $BACKEND_PID 2>/dev/null || true
+    kill $FRONTEND_PID 2>/dev/null || true
+    sleep 1
+    echo "👋 FloxAI Layer stopped - your Flox environment remains active"
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+wait

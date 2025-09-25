@@ -1,0 +1,51 @@
+version = 1
+
+[package] 
+name = "floxai"
+description = "The ultimate Flox development co-pilot with ChromaDB vector RAG - showcasing Flox's capabilities"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/flox/floxai"
+homepage = "https://floxai.dev"
+version = "1.0.0"
+authors = ["Flox Team <team@flox.dev>"]
+keywords = ["flox", "ai", "development", "copilot", "demo", "chromadb", "rag", "vector"]
+
+[package.metadata]
+category = "development-tools"
+flox-demo = true
+usage-modes = ["standalone", "layer", "service"]
+showcase-features = [
+    "cross-platform-environments",
+    "reproducible-builds", 
+    "service-management",
+    "environment-variables",
+    "multi-language-support",
+    "context-awareness",
+    "ai-integration",
+    "vector-search",
+    "semantic-rag",
+    "chromadb-integration"
+]
+
+# FloxAI demonstrates Flox's core capabilities with AI integration
+[build]
+systems = ["aarch64-darwin", "x86_64-darwin", "x86_64-linux", "aarch64-linux"]
+
+# Layer mode configuration
+[layer]
+description = "Add FloxAI as a layer to any Flox environment for context-aware AI assistance"
+commands = ["floxai"]
+scripts = ["floxai-layer"]
+
+# Standalone mode configuration  
+[standalone]
+description = "Run FloxAI as a standalone development environment"
+commands = ["floxybot", "floxai-setup", "floxai-demo", "flox-demo"]
+scripts = ["floxybot", "floxai-setup", "floxai-demo", "flox-demo"]
+
+# Service mode configuration
+[service]
+description = "Run FloxAI as a service with full web interface"
+commands = ["floxai serve"]
+scripts = ["floxai-start"]

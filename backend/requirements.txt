@@ -1,0 +1,31 @@
+# FastAPI and web framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# LLM and AI
+anthropic>=0.8.0
+sentence-transformers>=2.3.0
+chromadb>=0.4.0
+
+# Data processing (Python 3.13 compatible)
+pandas>=2.2.0
+numpy>=1.26.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# File processing
+GitPython>=3.1.40
+toml>=0.10.2
+PyYAML>=6.0.1
+
+# Database (SQLite is provided by Flox)
+sqlalchemy>=2.0.23
+
+# Utilities
+requests>=2.31.0
+python-dotenv>=1.0.0
+structlog>=23.2.0
+
+# Development
+pytest>=7.4.0

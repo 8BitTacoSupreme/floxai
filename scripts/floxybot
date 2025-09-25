@@ -1,0 +1,61 @@
+#!/bin/bash
+set -e
+
+echo "🌟 Starting FloxAI - The Flox Development Co-pilot"
+echo "=================================================="
+
+if [ -z "$FLOX_ENV" ]; then
+    echo "❌ FloxAI must be run inside a Flox environment"
+    echo "   This showcases Flox's environment isolation!"
+    echo "   Run: flox activate"
+    exit 1
+fi
+
+if [ -z "$CLAUDE_API_KEY" ]; then
+    echo "❌ CLAUDE_API_KEY not set in your Flox environment"
+    echo "   Set your Claude API key:"
+    echo "   export CLAUDE_API_KEY=your_key_here"
+    echo ""
+    echo "💡 Flox Tip: You can also add it to the manifest.toml [vars] section"
+    exit 1
+fi
+
+export FLOXAI_DEV_MODE=false
+
+echo "🚀 Starting FloxAI backend (powered by Flox Python)..."
+cd backend && python app/main.py &
+BACKEND_PID=$!
+sleep 2
+
+echo "🌐 Starting FloxAI frontend (powered by Flox Node.js)..."
+cd frontend && npm run build > /dev/null 2>&1
+npm run preview &
+FRONTEND_PID=$!
+sleep 3
+
+echo ""
+echo "✅ FloxAI is now running!"
+echo "   🌍 Frontend: http://localhost:4173"
+echo "   🔧 Backend:  http://localhost:8000"
+echo "   📖 API Docs: http://localhost:8000/docs"
+echo ""
+echo "🎯 This demonstrates Flox's power:"
+echo "   ✓ Reproducible environments across platforms"
+echo "   ✓ Multi-language stack coordination (Python + Node.js)"
+echo "   ✓ Service orchestration without Docker"
+echo "   ✓ Zero-config environment setup"
+echo ""
+echo "Press Ctrl+C to stop FloxAI"
+
+cleanup() {
+    echo ""
+    echo "🛑 Stopping FloxAI services..."
+    kill $BACKEND_PID 2>/dev/null || true
+    kill $FRONTEND_PID 2>/dev/null || true
+    sleep 1
+    echo "👋 FloxAI stopped - Flox environment remains active"
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+wait
