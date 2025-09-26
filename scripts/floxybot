@@ -12,7 +12,14 @@ if [ -z "$FLOX_ENV" ]; then
 fi
 
 # Claude API key will be prompted for securely by FloxAI's key management system
-# No need to check for it here - the activation hook handles it
+# Check if we need to prompt for the key
+if [ -z "$CLAUDE_API_KEY" ] && [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
+    echo "🔑 Setting up Claude API key for FloxAI..."
+    source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
+    if ! check_existing_key; then
+        main
+    fi
+fi
 
 export FLOXAI_DEV_MODE=false
 

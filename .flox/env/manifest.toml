@@ -89,9 +89,11 @@ echo "     ✓ Native performance"
 echo "     ✓ Reproducible everywhere"
 echo ""
 
-# Setup Claude API key interactively if needed
+# Setup Claude API key interactively if needed (only check, don't prompt during activation)
 if [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
   source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
+  # Only check for existing key during activation, don't prompt
+  check_existing_key >/dev/null 2>&1 || true
 fi
 
 # Auto-clone FloxAI source code if not present

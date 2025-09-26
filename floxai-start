@@ -21,6 +21,15 @@ if [ ! -f "$FLOX_ENV_PROJECT/data/floxai.db" ]; then
     exit 1
 fi
 
+# Claude API key setup
+if [ -z "$CLAUDE_API_KEY" ] && [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
+    echo "🔑 Setting up Claude API key for FloxAI..."
+    source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
+    if ! check_existing_key; then
+        main
+    fi
+fi
+
 echo "🔧 Flox Environment: $FLOX_ENV_NAME"
 echo "📁 Project Directory: $FLOX_ENV_PROJECT"
 echo "🤖 Claude API: ${CLAUDE_API_KEY:0:20}..."
