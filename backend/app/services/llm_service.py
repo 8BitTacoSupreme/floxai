@@ -95,9 +95,9 @@ Please provide a comprehensive answer based on the Flox documentation above. Foc
 Please provide helpful guidance about Flox development. If this question is outside your Flox expertise, let the user know and provide what general guidance you can."""
         
         try:
-            # Use the correct model name
+            # Use the latest model
             response = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",  # Current model
+                model="claude-sonnet-4-20250514",  # Latest Sonnet 4 model
                 max_tokens=2000,
                 temperature=0.1,
                 system=system_prompt,
