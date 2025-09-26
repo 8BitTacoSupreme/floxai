@@ -29,41 +29,30 @@ if [ -f "$FLOX_ENV_PROJECT/data/floxai.db" ]; then
     fi
 fi
 
-# Prompt for Claude API key
+# Setup Claude API key using secure management system
 echo "🔑 Claude API Key Configuration"
 echo "================================"
-echo "FloxAI uses Claude AI for intelligent assistance."
-echo "You can get a free API key from: https://console.anthropic.com/"
+echo "FloxAI uses our secure key management system."
+echo "Keys are never stored in git or shared publicly."
 echo ""
 
-if [ -n "$CLAUDE_API_KEY" ]; then
-    echo "✅ Claude API key already set in environment"
-    USE_EXISTING_KEY="y"
-else
-    echo "No Claude API key found in environment."
-    read -p "Do you have a Claude API key to configure? (Y/n): " -n 1 -r
-    echo
-    USE_EXISTING_KEY=${REPLY:-y}
-fi
+# Use the secure key setup script
+if [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
+    echo "🔐 Initializing secure key management..."
+    source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
 
-if [[ $USE_EXISTING_KEY =~ ^[Yy]$ ]] && [ -z "$CLAUDE_API_KEY" ]; then
-    echo "Please enter your Claude API key (it will not be displayed):"
-    read -s CLAUDE_API_KEY
-    echo ""
     if [ -n "$CLAUDE_API_KEY" ]; then
-        export CLAUDE_API_KEY
-        echo "✅ Claude API key configured for this session"
-        echo ""
-        echo "💡 To persist this key, add it to your manifest.toml:"
-        echo '   [vars]'
-        echo "   CLAUDE_API_KEY = \"$CLAUDE_API_KEY\""
-        echo ""
+        echo "✅ Claude API key configured securely"
+    else
+        echo "⚠️  Claude API key setup was skipped"
+        echo "   💡 You can set it up later when FloxAI starts"
+        echo "   🔒 Keys will be prompted for securely and never stored in git"
     fi
-elif [ -z "$CLAUDE_API_KEY" ]; then
-    echo "⚠️  No Claude API key configured - FloxAI will run with limited functionality"
-    echo "   You can add it later by setting CLAUDE_API_KEY environment variable"
-    echo ""
+else
+    echo "⚠️  Secure key management script not found"
+    echo "   Claude API key will be prompted for when you start FloxAI"
 fi
+echo ""
 
 echo "📁 Creating FloxAI data directories..."
 mkdir -p data/vector_db data/flox_docs data/uploads
@@ -321,7 +310,7 @@ floxai --layer
 
 - **Backend not starting**: Check `./floxai-check`
 - **Missing dependencies**: Run `flox install`
-- **API errors**: Verify `CLAUDE_API_KEY` is set
+- **API errors**: Run FloxAI to be prompted for your Claude API key
 - **No responses**: Check if vector database exists
 
 ## 📚 More Information
@@ -349,9 +338,6 @@ echo ""
 echo "   🔄 Manual Update (when needed):"
 echo "      ./floxai-update"
 echo ""
-if [ -n "$CLAUDE_API_KEY" ]; then
-    echo "✅ Claude AI integration ready!"
-else
-    echo "💡 For full AI features, set CLAUDE_API_KEY and re-run setup"
-fi
+echo "✅ Claude AI integration ready!"
+echo "   🔐 Your Claude API key will be prompted for securely when needed"
 echo ""

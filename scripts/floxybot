@@ -11,14 +11,8 @@ if [ -z "$FLOX_ENV" ]; then
     exit 1
 fi
 
-if [ -z "$CLAUDE_API_KEY" ]; then
-    echo "❌ CLAUDE_API_KEY not set in your Flox environment"
-    echo "   Set your Claude API key:"
-    echo "   export CLAUDE_API_KEY=your_key_here"
-    echo ""
-    echo "💡 Flox Tip: You can also add it to the manifest.toml [vars] section"
-    exit 1
-fi
+# Claude API key will be prompted for securely by FloxAI's key management system
+# No need to check for it here - the activation hook handles it
 
 export FLOXAI_DEV_MODE=false
 
