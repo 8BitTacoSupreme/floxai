@@ -89,6 +89,11 @@ echo "     ✓ Native performance"
 echo "     ✓ Reproducible everywhere"
 echo ""
 
+# Setup Claude API key interactively if needed
+if [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
+  source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
+fi
+
 # Auto-clone FloxAI source code if not present
 if [ ! -f "$FLOX_ENV_PROJECT/README.md" ]; then
   echo "  📦 Downloading FloxAI source code..."
@@ -147,13 +152,15 @@ echo "     floxybot      - Standalone mode (general Flox/Nix AI)"
 echo "     floxybotdev   - Context-aware development mode" 
 echo "     floxai-demo   - Flox capabilities showcase"
 echo ""
-echo "  💡 Next: Run 'floxai-setup' to get started"
+echo "  💡 Next: Your Claude API key will be prompted for when needed"
 echo ""
 echo "  🚀 Quick Start:"
 echo "     floxai        - Start complete FloxAI system"
 echo "     start-floxai  - Alternative start command"
 echo "     floxybot      - Standalone mode"
 echo "     floxybotdev   - Context-aware mode"
+echo ""
+echo "  🔐 Security: API keys are never stored in git or shared publicly"
 echo ""
 '''
 

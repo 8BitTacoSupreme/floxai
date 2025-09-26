@@ -14,6 +14,16 @@ FloxAI is both a powerful Flox development assistant and a comprehensive demonst
 - Shows cross-platform reproducibility without Docker
 - Exhibits environment isolation and dependency management
 
+## 🔐 Security Features
+
+FloxAI implements security best practices:
+
+- **🚫 No Hardcoded Secrets**: API keys are never stored in git or manifest files
+- **🔑 Interactive Prompts**: Claude API key requested securely on first use
+- **💾 Optional Persistence**: Keys can be saved locally (gitignored) for convenience
+- **🗑️ Session Cleanup**: Temporary keys automatically cleaned up on exit
+- **✅ Key Validation**: API keys are tested before being accepted
+
 ### Core Features
 
 #### 1. **AI-Powered Flox Assistance** ⚡
@@ -21,6 +31,7 @@ FloxAI is both a powerful Flox development assistant and a comprehensive demonst
 - **NEW**: Powered by Claude Sonnet 4 (latest model) for superior responses
 - Includes RAG (Retrieval Augmented Generation) for searching Flox documentation
 - **FIXED**: Resolved service initialization issues for reliable AI functionality
+- **SECURE**: Interactive API key prompting - never stores keys in git or public repos
 
 #### 2. **Full-Stack Architecture**
 - **Backend**: Python FastAPI with async support
