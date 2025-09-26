@@ -1,6 +1,6 @@
-# FloxAI - The Flox Development Co-pilot
+# FloxAI - The Flox Development Co-pilot 🤖
 
-FloxAI is both a powerful Flox development assistant and a comprehensive demonstration of Flox's capabilities for creating reproducible, cross-platform development environments. It showcases the "Flox-first" approach to modern development tooling.
+FloxAI is both a powerful Flox development assistant and a comprehensive demonstration of Flox's capabilities for creating reproducible, cross-platform development environments. **Latest update**: Now powered by Claude Sonnet 4 with improved service initialization!
 
 ## 🎯 Dual Purpose
 
@@ -16,10 +16,11 @@ FloxAI is both a powerful Flox development assistant and a comprehensive demonst
 
 ### Core Features
 
-#### 1. **AI-Powered Flox Assistance**
+#### 1. **AI-Powered Flox Assistance** ⚡
 - Answers questions about Flox environments, manifest.toml files, and best practices
-- Uses Claude AI for intelligent, context-aware responses
+- **NEW**: Powered by Claude Sonnet 4 (latest model) for superior responses
 - Includes RAG (Retrieval Augmented Generation) for searching Flox documentation
+- **FIXED**: Resolved service initialization issues for reliable AI functionality
 
 #### 2. **Full-Stack Architecture**
 - **Backend**: Python FastAPI with async support
