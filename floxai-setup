@@ -38,12 +38,18 @@ echo ""
 
 # Use the secure key setup script
 if [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
-    echo "🔐 Initializing secure key management..."
+    echo "🔐 Setting up your Claude API key securely..."
+    echo ""
+
+    # Call the main function from the setup script to actually prompt
     source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
+    main  # This will run the interactive prompt
 
     if [ -n "$CLAUDE_API_KEY" ]; then
-        echo "✅ Claude API key configured securely"
+        echo ""
+        echo "✅ Claude API key configured securely for FloxAI"
     else
+        echo ""
         echo "⚠️  Claude API key setup was skipped"
         echo "   💡 You can set it up later when FloxAI starts"
         echo "   🔒 Keys will be prompted for securely and never stored in git"
