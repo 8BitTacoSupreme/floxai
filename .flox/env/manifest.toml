@@ -49,10 +49,10 @@ sentence-transformers.pkg-path = "python313Packages.sentence-transformers"
 tiktoken.pkg-path = "python313Packages.tiktoken"
 
 [vars]
-FLOXAI_VERSION = "1.0.0"
+FLOXAI_VERSION = "1.0.2"
 FLOXAI_API_PORT = "8000"
 FLOXAI_UI_PORT = "3000"
-CLAUDE_API_KEY = "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"
+# CLAUDE_API_KEY will be prompted for interactively - do not store in manifest
 FLOXAI_DB_PATH = "$FLOX_ENV_PROJECT/data/floxai.db"
 FLOXAI_VECTOR_DB_PATH = "$FLOX_ENV_PROJECT/data/vector_db"
 FLOXAI_DOCS_PATH = "$FLOX_ENV_PROJECT/data/flox_docs"
@@ -89,20 +89,49 @@ echo "     ✓ Native performance"
 echo "     ✓ Reproducible everywhere"
 echo ""
 
-mkdir -p $FLOX_ENV_PROJECT/data/vector_db $FLOX_ENV_PROJECT/data/flox_docs
-
-if [ ! -f "$FLOX_ENV_PROJECT/.flox-py-deps" ]; then
-  echo "  📦 Installing Python dependencies..."
-  python3 -m pip install --upgrade pip
-  python3 -m pip install -r $FLOX_ENV_PROJECT/backend/requirements.txt
-  touch $FLOX_ENV_PROJECT/.flox-py-deps
-  echo "  ✅ Python dependencies ready!"
+# Auto-clone FloxAI source code if not present
+if [ ! -f "$FLOX_ENV_PROJECT/README.md" ]; then
+  echo "  📦 Downloading FloxAI source code..."
+  if command -v git >/dev/null 2>&1; then
+    # Try cloning without authentication first (works if repo is public)
+    if git clone https://github.com/8BitTacoSupreme/floxai.git /tmp/floxai-source 2>/dev/null; then
+      cp -r /tmp/floxai-source/* $FLOX_ENV_PROJECT/ 2>/dev/null || true
+      cp -r /tmp/floxai-source/.* $FLOX_ENV_PROJECT/ 2>/dev/null || true
+      rm -rf /tmp/floxai-source
+      echo "  ✅ FloxAI source code downloaded!"
+    else
+      echo "  ⚠️  Could not download source code automatically"
+      echo "      Please run: git clone https://github.com/8BitTacoSupreme/floxai.git ."
+      echo "      Or make the repository public for automatic downloads"
+    fi
+  else
+    echo "  ⚠️  Git not available - please manually clone the repository"
+  fi
 fi
 
-if [ ! -d "$FLOX_ENV_PROJECT/frontend/node_modules" ]; then
-  echo "  📦 Installing Node.js dependencies..."
-  cd $FLOX_ENV_PROJECT/frontend && npm install && cd $FLOX_ENV_PROJECT
-  echo "  ✅ Node.js dependencies ready!"
+mkdir -p $FLOX_ENV_PROJECT/data/vector_db $FLOX_ENV_PROJECT/data/flox_docs
+
+# Only install dependencies if source code is present
+if [ -f "$FLOX_ENV_PROJECT/backend/requirements.txt" ]; then
+  if [ ! -f "$FLOX_ENV_PROJECT/.flox-py-deps" ]; then
+    echo "  📦 Installing Python dependencies..."
+    python3 -m pip install --upgrade pip --user
+    python3 -m pip install -r $FLOX_ENV_PROJECT/backend/requirements.txt --user
+    touch $FLOX_ENV_PROJECT/.flox-py-deps
+    echo "  ✅ Python dependencies ready!"
+  fi
+else
+  echo "  ⚠️  Skipping Python dependencies - source code not available"
+fi
+
+if [ -d "$FLOX_ENV_PROJECT/frontend" ]; then
+  if [ ! -d "$FLOX_ENV_PROJECT/frontend/node_modules" ]; then
+    echo "  📦 Installing Node.js dependencies..."
+    cd $FLOX_ENV_PROJECT/frontend && npm install && cd $FLOX_ENV_PROJECT
+    echo "  ✅ Node.js dependencies ready!"
+  fi
+else
+  echo "  ⚠️  Skipping Node.js dependencies - frontend directory not available"
 fi
 
 if command -v tree >/dev/null 2>&1; then

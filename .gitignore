@@ -58,6 +58,8 @@ QUICKSTART.md
 *api-key*
 *secret*
 *password*
+.claude-session-key
+claude-api-key.txt
 
 # Generated documentation (will be recreated by update_docs.sh)
 data/doc_update.log
