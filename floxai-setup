@@ -37,12 +37,13 @@ echo "Keys are never stored in git or shared publicly."
 echo ""
 
 # Use the secure key setup script
-if [ -f "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh" ]; then
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/scripts/setup-claude-key.sh" ]; then
     echo "🔐 Setting up your Claude API key securely..."
     echo ""
 
     # Call the main function from the setup script to actually prompt
-    source "$FLOX_ENV_PROJECT/scripts/setup-claude-key.sh"
+    source "$SCRIPT_DIR/scripts/setup-claude-key.sh"
     main  # This will run the interactive prompt
 
     if [ -n "$CLAUDE_API_KEY" ]; then
