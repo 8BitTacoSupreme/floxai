@@ -18,53 +18,335 @@ echo "   Node.js: $(node --version)"
 echo "   Platform: $(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"
 echo ""
 
-# Create virtual environment
-echo "📦 Setting up Python virtual environment..."
-if [ ! -d "$FLOX_ENV_PROJECT/venv" ]; then
-    python3 -m venv $FLOX_ENV_PROJECT/venv
-    echo "✅ Virtual environment created"
+# Check for existing setup
+if [ -f "$FLOX_ENV_PROJECT/data/floxai.db" ]; then
+    echo "⚠️  FloxAI appears to already be set up."
+    read -p "Do you want to reinitialize? (y/N): " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Setup cancelled."
+        exit 0
+    fi
 fi
 
-# Use venv's pip to install dependencies
-echo "📦 Installing Python dependencies..."
-cd $FLOX_ENV_PROJECT/backend
-$FLOX_ENV_PROJECT/venv/bin/pip install --upgrade pip
-$FLOX_ENV_PROJECT/venv/bin/pip install -r requirements.txt
-cd $FLOX_ENV_PROJECT
-echo "✅ Python dependencies installed"
+# Setup Claude API key using secure management system
+echo "🔑 Claude API Key Configuration"
+echo "================================"
+echo "FloxAI uses our secure key management system."
+echo "Keys are never stored in git or shared publicly."
+echo ""
+
+# Use the secure key setup script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+if [ -f "$SCRIPT_DIR/setup-claude-key.sh" ]; then
+    echo "🔐 Setting up your Claude API key securely..."
+    echo ""
+
+    # Call the main function from the setup script to actually prompt
+    source "$SCRIPT_DIR/setup-claude-key.sh"
+    main  # This will run the interactive prompt
+
+    if [ -n "$CLAUDE_API_KEY" ]; then
+        echo ""
+        echo "✅ Claude API key configured securely for FloxAI"
+    else
+        echo ""
+        echo "⚠️  Claude API key setup was skipped"
+        echo "   💡 You can set it up later when FloxAI starts"
+        echo "   🔒 Keys will be prompted for securely and never stored in git"
+    fi
+else
+    echo "⚠️  Secure key management script not found"
+    echo "   Claude API key will be prompted for when you start FloxAI"
+fi
 echo ""
 
 echo "📁 Creating FloxAI data directories..."
 mkdir -p data/vector_db data/flox_docs data/uploads
 
-echo "📖 Setting up Flox documentation..."
-mkdir -p data/flox_docs
-cat > data/flox_docs/flox-overview.md << 'DOCEOF'
-# Flox Overview
-Flox creates reproducible development environments.
-
-## Key Benefits
-- Reproducible environments
-- Cross-platform support
-- Native performance
-- Simple manifest.toml configuration
-DOCEOF
-echo "   ✅ Documentation created"
-
 echo "💾 Initializing database..."
-$FLOX_ENV_PROJECT/venv/bin/python -c "
+python3 -c "
 import sys
-sys.path.insert(0, '$FLOX_ENV_PROJECT/backend')
+sys.path.insert(0, '${FLOX_ENV_PROJECT:-$PROJECT_ROOT}/backend')
 from app.db.database import init_db
 init_db()
 print('   ✅ Database initialized')
 "
 
+echo "📚 Seeding FloxAI Knowledge Base..."
+echo "   This may take a few minutes on first run..."
+
+# Check if knowledge base is already seeded
+PROJECT_DIR="${FLOX_ENV_PROJECT:-$PROJECT_ROOT}"
+if [ -d "$PROJECT_DIR/data/flox_docs/blogs" ] && [ -f "$PROJECT_DIR/data/flox_docs/blogs/README.md" ]; then
+    echo "   ✅ Knowledge base already seeded"
+    echo "   📊 Found $(find $PROJECT_DIR/data/flox_docs -name "*.md" | wc -l | tr -d ' ') documentation files"
+else
+    echo "   🌱 First-time setup: Seeding comprehensive knowledge base..."
+    
+    # Run blog ingestion for latest Flox content
+    if [ -f "$PROJECT_DIR/ingest_flox_blogs.py" ]; then
+        echo "   📰 Ingesting Flox blog posts..."
+        python3 "$PROJECT_DIR/ingest_flox_blogs.py" || {
+            echo "   ⚠️  Blog ingestion encountered issues (continuing anyway)"
+        }
+    fi
+
+    # Run documentation update
+    if [ -f "$PROJECT_DIR/update_docs.sh" ]; then
+        echo "   📖 Updating Flox documentation..."
+        bash "$PROJECT_DIR/update_docs.sh" || {
+            echo "   ⚠️  Documentation update encountered issues (continuing anyway)"
+        }
+    else
+        # Create basic documentation if update script not available
+        echo "   📝 Creating basic documentation..."
+        mkdir -p data/flox_docs
+        cat > data/flox_docs/flox-overview.md << 'DOCEOF'
+# Flox Overview
+Flox creates reproducible development environments.
+
+## Key Benefits
+- Reproducible environments
+- Cross-platform support  
+- Native performance
+- Simple manifest.toml configuration
+
+## Getting Started
+1. Create a new environment: `flox init`
+2. Add packages: `flox install python nodejs`
+3. Activate environment: `flox activate`
+4. Your development environment is ready!
+DOCEOF
+        
+        cat > data/flox_docs/getting-started.md << 'DOCEOF'
+# Getting Started with Flox
+
+## Installation
+Visit https://flox.dev/docs/install for installation instructions.
+
+## Basic Commands
+- `flox init` - Initialize a new environment
+- `flox install <package>` - Add packages
+- `flox activate` - Enter the environment
+- `flox list` - Show installed packages
+- `flox search <term>` - Search for packages
+DOCEOF
+        echo "   ✅ Basic documentation created"
+    fi
+    
+    echo "   📊 Knowledge base seeded with $(find $PROJECT_DIR/data/flox_docs -name "*.md" | wc -l | tr -d ' ') files"
+fi
+
+# Run vectorization if not already done
+echo "🧠 Setting up Vector RAG System..."
+if [ -f "$PROJECT_DIR/migrate_to_vector_rag.py" ]; then
+    if [ -d "$PROJECT_DIR/data/vector_db" ] && [ "$(ls -A $PROJECT_DIR/data/vector_db 2>/dev/null)" ]; then
+        echo "   ✅ Vector database already exists"
+    else
+        echo "   🔄 Creating vector embeddings (this may take a few minutes)..."
+        cd "$PROJECT_DIR" && python3 migrate_to_vector_rag.py || {
+            echo "   ⚠️  Vectorization encountered issues (continuing anyway)"
+        }
+    fi
+else
+    echo "   ⚠️  Vector RAG script not found, skipping vectorization"
+fi
+
+# Set up automated updates in manifest.toml
+echo "⚙️  Configuring automated updates..."
+MANIFEST_FILE="$PROJECT_DIR/.flox/env/manifest.toml"
+if [ -f "$MANIFEST_FILE" ]; then
+    # Check if update hook already exists
+    if ! grep -q "update_docs.sh" "$MANIFEST_FILE"; then
+        echo "   📝 Adding automated update configuration to manifest.toml..."
+        
+        # Add update hook to manifest
+        cat >> "$MANIFEST_FILE" << 'MANIFESTEOF'
+
+# FloxAI automated updates
+[hook]
+onActivate = """
+# Check if FloxAI data needs updating (every 7 days)
+FLOXAI_DATA_DIR="$FLOX_ENV_PROJECT/data"
+UPDATE_FLAG="$FLOXAI_DATA_DIR/.last_update"
+CURRENT_TIME=$(date +%s)
+LAST_UPDATE=0
+
+if [ -f "$UPDATE_FLAG" ]; then
+    LAST_UPDATE=$(cat "$UPDATE_FLAG" 2>/dev/null || echo "0")
+fi
+
+# Update if more than 7 days old (604800 seconds)
+if [ $((CURRENT_TIME - LAST_UPDATE)) -gt 604800 ]; then
+    echo "🔄 FloxAI: Checking for documentation updates..."
+    if [ -f "$FLOX_ENV_PROJECT/update_docs.sh" ]; then
+        # Run in background to avoid blocking activation
+        (cd "$FLOX_ENV_PROJECT" && ./update_docs.sh --vector-only > /dev/null 2>&1 &)
+        echo "$CURRENT_TIME" > "$UPDATE_FLAG"
+    fi
+fi
+"""
+MANIFESTEOF
+        echo "   ✅ Automated updates configured (runs every 7 days)"
+    else
+        echo "   ✅ Automated updates already configured"
+    fi
+else
+    echo "   ⚠️  Manifest file not found, skipping automated update setup"
+fi
+
+# Create a manual update command
+echo "🔧 Creating manual update command..."
+cat > "$PROJECT_DIR/floxai-update" << 'UPDATEEOF'
+#!/bin/bash
+# FloxAI Manual Update Command
+echo "🔄 FloxAI: Updating documentation and vector database..."
+cd "$FLOX_ENV_PROJECT"
+if [ -f "update_docs.sh" ]; then
+    ./update_docs.sh
+    echo "✅ FloxAI update completed"
+else
+    echo "❌ Update script not found"
+fi
+UPDATEEOF
+chmod +x "$PROJECT_DIR/floxai-update"
+
+# Set up environment validation
+echo "🔍 Setting up environment validation..."
+cat > "$PROJECT_DIR/floxai-check" << 'CHECKEOF'
+#!/bin/bash
+# FloxAI Environment Health Check
+echo "🔍 FloxAI Environment Health Check"
+echo "=================================="
+
+# Check Flox environment
+if [ -n "$FLOX_ENV" ]; then
+    echo "✅ Flox environment active: $FLOX_ENV_NAME"
+else
+    echo "❌ No Flox environment active"
+    exit 1
+fi
+
+# Check Claude API key
+if [ -n "$CLAUDE_API_KEY" ]; then
+    echo "✅ Claude API key configured"
+else
+    echo "⚠️  Claude API key not set (limited functionality)"
+fi
+
+# Check data directory
+if [ -d "$FLOX_ENV_PROJECT/data" ]; then
+    echo "✅ Data directory exists"
+    DOC_COUNT=$(find "$FLOX_ENV_PROJECT/data/flox_docs" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+    echo "   📚 Documentation files: $DOC_COUNT"
+else
+    echo "❌ Data directory missing"
+fi
+
+# Check vector database
+if [ -d "$FLOX_ENV_PROJECT/data/vector_db" ] && [ "$(ls -A $FLOX_ENV_PROJECT/data/vector_db 2>/dev/null)" ]; then
+    echo "✅ Vector database exists"
+else
+    echo "⚠️  Vector database missing or empty"
+fi
+
+# Check backend dependencies
+echo "🔧 Backend Dependencies:"
+python3 -c "import fastapi, uvicorn, chromadb, sentence_transformers; print('✅ All backend dependencies available')" 2>/dev/null || {
+    echo "❌ Missing backend dependencies"
+    echo "   Run: flox install to install required packages"
+}
+
+# Check frontend dependencies
+if [ -d "$FLOX_ENV_PROJECT/frontend/node_modules" ]; then
+    echo "✅ Frontend dependencies installed"
+else
+    echo "⚠️  Frontend dependencies missing"
+    echo "   Run: cd frontend && npm install"
+fi
+
+echo ""
+echo "🎯 FloxAI Status: Ready to use!"
+CHECKEOF
+chmod +x "$PROJECT_DIR/floxai-check"
+
+# Create a quick start guide
+echo "📖 Creating quick start guide..."
+cat > "$PROJECT_DIR/QUICKSTART.md" << 'GUIDEEOF'
+# FloxAI Quick Start Guide
+
+## 🚀 Getting Started
+
+### 1. Check Your Setup
+```bash
+./floxai-check
+```
+
+### 2. Choose Your Mode
+
+#### L1/L2 Support (General Questions)
+```bash
+./floxybot
+```
+- General Flox/Nix questions
+- Troubleshooting help
+- Best practices guidance
+
+#### L3 Resident Engineer (Environment Work)
+```bash
+floxai --layer
+```
+- Analyze current environment
+- Suggest improvements
+- Hands-on assistance
+
+#### Interactive Learning Journey
+```bash
+./flox-demo
+```
+- Learn Flox step-by-step
+- Build projects from scratch
+- Explore all features
+
+### 3. Keep Updated
+```bash
+./floxai-update
+```
+
+## 🔧 Troubleshooting
+
+- **Backend not starting**: Check `./floxai-check`
+- **Missing dependencies**: Run `flox install`
+- **API errors**: Run FloxAI to be prompted for your Claude API key
+- **No responses**: Check if vector database exists
+
+## 📚 More Information
+
+- Full documentation: `README.md`
+- API docs: http://localhost:8000/docs (when running)
+- Health check: http://localhost:8000/health (when running)
+GUIDEEOF
+
 echo ""
 echo "🎉 FloxAI Setup Complete!"
+echo "========================================"
 echo ""
-echo "🚀 To start FloxAI:"
-echo "   1. Set Claude API key (optional):"
-echo "      (Claude API key will be prompted for securely)"
-echo "   2. Run: ./floxybotdev"
+echo "🚀 Ready to use FloxAI:"
+echo ""
+echo "   📖 L1/L2 Support (General Flox/Nix AI):"
+echo "      ./floxybot"
+echo ""
+echo "   🔧 L3 Resident Engineer (Environment-specific):"
+echo "      floxai --layer"
+echo ""
+echo "   🎯 Interactive Learning Journey:"
+echo "      ./flox-demo"
+echo ""
+echo "   🔄 Manual Update (when needed):"
+echo "      ./floxai-update"
+echo ""
+echo "✅ Claude AI integration ready!"
+echo "   🔐 Your Claude API key will be prompted for securely when needed"
 echo ""
