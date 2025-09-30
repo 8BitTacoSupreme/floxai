@@ -177,3 +177,16 @@ alias floxai="echo Starting FloxAI... && $FLOX_ENV_PROJECT/floxai-start"
 alias start-floxai="echo Starting FloxAI... && $FLOX_ENV_PROJECT/floxai-start"
 '''
 
+# Test build section - simple exploration
+[build.hello-test]
+command = '''
+echo "🔧 Building simple test package..."
+mkdir -p $out/bin
+echo '#!/bin/bash' > $out/bin/hello-floxai
+echo 'echo "Hello from FloxAI build test! 🤖"' >> $out/bin/hello-floxai
+echo 'echo "Built at: $(date)"' >> $out/bin/hello-floxai
+echo 'echo "Environment: $FLOX_ENV_NAME"' >> $out/bin/hello-floxai
+chmod +x $out/bin/hello-floxai
+echo "✅ Test package built successfully"
+'''
+
