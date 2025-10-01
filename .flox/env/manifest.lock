@@ -160,7 +160,12 @@
     "profile": {
       "common": "export PATH=\"$FLOX_ENV_PROJECT/scripts:$FLOX_ENV_PROJECT:$PATH\"\nalias floxstatus=\"echo Flox Environment: $FLOX_ENV_NAME && flox list\"\nalias floxinfo=\"echo FloxAI v$FLOXAI_VERSION | Environment: $FLOX_ENV_NAME\"\nalias backend=\"cd $FLOX_ENV_PROJECT/backend\"\nalias frontend=\"cd $FLOX_ENV_PROJECT/frontend\"\nalias floxai=\"echo Starting FloxAI... && $FLOX_ENV_PROJECT/floxai-start\"\nalias start-floxai=\"echo Starting FloxAI... && $FLOX_ENV_PROJECT/floxai-start\"\n"
     },
-    "options": {}
+    "options": {},
+    "build": {
+      "hello-test": {
+        "command": "echo \"🔧 Building simple test package...\"\nmkdir -p $out/bin\necho '#!/bin/bash' > $out/bin/hello-floxai\necho 'echo \"Hello from FloxAI build test! 🤖\"' >> $out/bin/hello-floxai\necho 'echo \"Built at: $(date)\"' >> $out/bin/hello-floxai\necho 'echo \"Environment: $FLOX_ENV_NAME\"' >> $out/bin/hello-floxai\nchmod +x $out/bin/hello-floxai\necho \"✅ Test package built successfully\"\n"
+      }
+    }
   },
   "packages": [
     {
