@@ -1,0 +1,22 @@
+# FloxAI Knowledge - AI Chat + Knowledge Base
+# Example composition using base + RAG + LLM components
+
+version = 1
+
+[vars]
+FLOXAI_MODE = "knowledge"
+FLOXAI_COMPONENTS = "base,rag,llm"
+
+[include]
+environments = [
+    { remote = "8bittacosupreme/floxai-base" },
+    { remote = "8bittacosupreme/floxai-rag" },
+    { remote = "8bittacosupreme/floxai-llm" }
+]
+
+[profile]
+common = '''
+echo "FloxAI Knowledge Environment Ready"
+echo "Components: Base Runtime + RAG + LLM"
+echo "Features: AI chat with semantic search and document knowledge"
+'''
