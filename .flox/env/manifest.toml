@@ -177,16 +177,155 @@ alias floxai="echo Starting FloxAI... && $FLOX_ENV_PROJECT/floxai-start"
 alias start-floxai="echo Starting FloxAI... && $FLOX_ENV_PROJECT/floxai-start"
 '''
 
-# Test build section - simple exploration
-[build.hello-test]
+# FloxAI Modular Components
+[build.floxai-base]
+description = "FloxAI Base - Core runtime and dependencies"
+version = "1.0.3"
 command = '''
-echo "🔧 Building simple test package..."
-mkdir -p $out/bin
-echo '#!/bin/bash' > $out/bin/hello-floxai
-echo 'echo "Hello from FloxAI build test! 🤖"' >> $out/bin/hello-floxai
-echo 'echo "Built at: $(date)"' >> $out/bin/hello-floxai
-echo 'echo "Environment: $FLOX_ENV_NAME"' >> $out/bin/hello-floxai
-chmod +x $out/bin/hello-floxai
-echo "✅ Test package built successfully"
+echo "🔧 Building FloxAI Base Component..."
+mkdir -p $out/bin $out/share/floxai
+
+# Base component entry point
+cat > $out/bin/floxai-base << 'EOF'
+#!/bin/bash
+echo "FloxAI Base Component v1.0.3"
+echo "Provides: Python 3.13, FastAPI, Node.js, Git, Core utilities"
+echo "Usage: Layer this environment for FloxAI development"
+echo "Next: Add floxai-rag, floxai-llm, or other components as needed"
+EOF
+chmod +x $out/bin/floxai-base
+
+# Component metadata
+cat > $out/share/floxai/base-info.json << 'EOF'
+{
+  "name": "floxai-base",
+  "version": "1.0.3",
+  "description": "Core runtime and dependencies for FloxAI",
+  "provides": ["python313", "fastapi", "nodejs", "git", "sqlite"],
+  "layerable": true,
+  "composes_with": ["floxai-rag", "floxai-llm", "floxai-docs"]
+}
+EOF
+
+echo "✅ FloxAI Base component built successfully"
+'''
+
+[build.floxai-rag]
+description = "FloxAI RAG - Knowledge base and vector search"
+version = "1.0.3"
+command = '''
+echo "🔧 Building FloxAI RAG Component..."
+mkdir -p $out/bin $out/share/floxai $out/lib/python/floxai
+
+# Copy RAG service
+cp -r backend/app/services/rag_service.py $out/lib/python/floxai/
+cp -r backend/app/services/embedding_service.py $out/lib/python/floxai/ 2>/dev/null || true
+cp -r backend/app/services/vector_rag_service.py $out/lib/python/floxai/ 2>/dev/null || true
+cp -r backend/app/services/document_processor.py $out/lib/python/floxai/ 2>/dev/null || true
+
+# RAG component entry point
+cat > $out/bin/floxai-rag << 'EOF'
+#!/bin/bash
+echo "FloxAI RAG Component v1.0.3"
+echo "Provides: ChromaDB, Sentence Transformers, Document Processing"
+echo "Features: Vector embeddings, semantic search, document ingestion"
+echo "Usage: Layer on floxai-base for knowledge base functionality"
+EOF
+chmod +x $out/bin/floxai-rag
+
+# Component metadata
+cat > $out/share/floxai/rag-info.json << 'EOF'
+{
+  "name": "floxai-rag",
+  "version": "1.0.3",
+  "description": "RAG service with vector embeddings and semantic search",
+  "provides": ["chromadb", "sentence-transformers", "tiktoken"],
+  "requires": ["floxai-base"],
+  "layerable": true
+}
+EOF
+
+echo "✅ FloxAI RAG component built successfully"
+'''
+
+[build.floxai-llm]
+description = "FloxAI LLM - Claude integration and AI services"
+version = "1.0.3"
+command = '''
+echo "🔧 Building FloxAI LLM Component..."
+mkdir -p $out/bin $out/share/floxai $out/lib/python/floxai
+
+# Copy LLM service
+cp backend/app/services/llm_service.py $out/lib/python/floxai/
+cp scripts/setup-claude-key.sh $out/bin/
+
+# LLM component entry point
+cat > $out/bin/floxai-llm << 'EOF'
+#!/bin/bash
+echo "FloxAI LLM Component v1.0.3"
+echo "Provides: Claude Sonnet 4, Anthropic API integration"
+echo "Features: Secure API key management, LLM conversations"
+echo "Usage: Layer on floxai-base for AI chat functionality"
+EOF
+chmod +x $out/bin/floxai-llm
+
+# Component metadata
+cat > $out/share/floxai/llm-info.json << 'EOF'
+{
+  "name": "floxai-llm",
+  "version": "1.0.3",
+  "description": "Claude LLM integration with secure API key management",
+  "provides": ["anthropic", "claude-sonnet-4"],
+  "requires": ["floxai-base"],
+  "layerable": true,
+  "secure_config": true
+}
+EOF
+
+echo "✅ FloxAI LLM component built successfully"
+'''
+
+[build.floxai-complete]
+description = "Complete FloxAI system - All components integrated"
+version = "1.0.3"
+command = '''
+echo "🔧 Building Complete FloxAI System..."
+mkdir -p $out/bin $out/share/floxai $out/lib/python/floxai $out/frontend
+
+# Copy all backend services
+cp -r backend/* $out/lib/python/floxai/
+
+# Copy frontend
+cp -r frontend/* $out/frontend/ 2>/dev/null || echo "Frontend not found, skipping"
+
+# Copy scripts
+cp -r scripts/* $out/bin/ 2>/dev/null || true
+cp floxai-setup $out/bin/ 2>/dev/null || true
+cp floxai-start $out/bin/ 2>/dev/null || true
+
+# Main entry point
+cat > $out/bin/floxai << 'EOF'
+#!/bin/bash
+echo "FloxAI Complete System v1.0.3"
+echo "All components: Base + RAG + LLM + Frontend + Documentation"
+echo "Ready to use as development co-pilot"
+echo "Run: floxai-setup to initialize"
+EOF
+chmod +x $out/bin/floxai
+
+# Complete system metadata
+cat > $out/share/floxai/complete-info.json << 'EOF'
+{
+  "name": "floxai-complete",
+  "version": "1.0.3",
+  "description": "Complete FloxAI development co-pilot system",
+  "includes": ["floxai-base", "floxai-rag", "floxai-llm"],
+  "provides": ["full-system", "web-ui", "api", "documentation"],
+  "layerable": true,
+  "standalone": true
+}
+EOF
+
+echo "✅ Complete FloxAI system built successfully"
 '''
 
